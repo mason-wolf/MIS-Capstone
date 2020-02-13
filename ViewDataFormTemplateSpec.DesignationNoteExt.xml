@@ -2,8 +2,8 @@
 	xmlns="bb_appfx_viewdataformtemplate" 
 	xmlns:c="bb_appfx_commontypes" 
 	ID="49f0af9c-caf1-4e0d-bb27-f99f83325821" 
-	Name="View Data Form Designation Note Ext"
-	Description="A data form for viewing designation note extension"
+	Name="Designation Note Ext"
+	Description="A data form for viewing extended designation note data"
 	Author="ADV\msstu6"
 	DataFormInstanceID="5475a6a1-1392-4ca3-81bb-a9ff3e438038" 
 	RecordType="View Data Form Template Spec"
@@ -18,7 +18,14 @@ create procedure dbo.USR_UAUSP_DATAFORMTEMPLATE_VIEW_VIEWDESIGNATIONNOTE_EXT
 (
 	@ID uniqueidentifier,
 	@DATALOADED bit = 0 output,
-	@TITLE nvarchar(10) = null output
+	@DESIGNATIONSTATUS nvarchar(255) = null output,
+  @STEWARDSHIPNAME nvarchar(255) = null output,
+  @PREFERREDSCHOOL nvarchar(255) = null output,
+  @ESTABLISHEDBY nvarchar(255) = null output,
+  @CONSTITUENTTYPE nvarchar(255) = null output,
+  @FUNDRESTRICTION nvarchar(255) = null output,
+  @MOADATE nvarchar(255) = null output,
+  @RESOLUTIONDATE nvarchar(255) = null output
 )
 as
 	set nocount on;
@@ -31,9 +38,16 @@ as
 	-- will display a "no data loaded" message.
   
 	select @DATALOADED = 1,
-		   @TITLE = TITLE
-	from dbo.DESIGNATIONLEVELNOTE
-	where dbo.DESIGNATIONLEVELNOTE.DESIGNATIONLEVELID = @ID
+		   @DESIGNATIONSTATUS = DESIGNATIONSTATUS,
+       @STEWARDSHIPNAME = STEWARDSHIPNAME,
+       @PREFERREDSCHOOL = PREFERREDSCHOOL,
+       @ESTABLISHEDBY = ESTABLISHEDBY,
+       @CONSTITUENTTYPE = CONSTITUENTTYPE,
+       @FUNDRESTRICTION = FUNDRESTRICTION,
+       @MOADATE = MOADATE,
+       @RESOLUTIONDATE = RESOLUTIONDATE
+	from USR_UA_DESIGNATIONNOTEEXT
+	where USR_UA_DESIGNATIONNOTEEXT.DESIGNATIONLEVELID = @ID
 	
 	return 0;
 			]]>
@@ -44,7 +58,14 @@ as
 	like the context @ID, @DATALOADED, and @CURRENTAPPUSERID need not be listed. -->
 	<FormMetaData xmlns="bb_appfx_commontypes">
 		<FormFields>
-			<FormField FieldID="TITLE" Caption="Field 1" DataType="String" MaxLength="10" />
+			<FormField FieldID="DESIGNATIONSTATUS" Caption="Status" DataType="String" MaxLength="255" />
+      <FormField FieldID="STEWARDSHIPNAME" Caption="Stewardship Name" DataType="String" MaxLength="255" />
+      <FormField FieldID="PREFERREDSCHOOL" Caption="Preferred School" DataType="String" MaxLength="255" />
+      <FormField FieldID="ESTABLISHEDBY" Caption="Established By" DataType="String" MaxLength="255" />
+      <FormField FieldID="CONSTITUENTTYPE" Caption="Constituent Type" DataType="String" MaxLength="255" />
+      <FormField FieldID="FUNDRESTRICTION" Caption="Fund Restriction" DataType="String" MaxLength="255" />
+      <FormField FieldID="MOADATE" Caption="MOA Date" DataType="String" MaxLength="255" />
+      <FormField FieldID="RESOLUTIONDATE" Caption="Resolution Date" DataType="String" MaxLength="255" />
 		</FormFields>
 	</FormMetaData>
 
