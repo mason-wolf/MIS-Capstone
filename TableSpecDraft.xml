@@ -1,23 +1,26 @@
-<TableSpec
- xmlns="bb_appfx_table"
- xmlns:c="bb_appfx_commontypes"
- ID="182c9718-4932-47ff-81b2-a6584bf846fd"
- Name="USR UA DESIGNATIONNOTE EXT "
- Description="Stores information about designation level note records"
- Author="ADV\msstu6"
- Tablename="USR_UA_DESIGNATIONNOTE_EXT"     
- IsBuiltIn="false"
- >
-  <Fields>
-    <ForeignKeyField Description="Designation note that is associated with the designation level." Name="DESIGNATIONLEVELID" Required="true" ForeignTable="DESIGNATIONLEVEL" OnDelete="CascadeDelete" />
-    <TextField Description="Status of the note" Name="STATUS" Length="25" Required="true" />
-    <TextField Description="Stewardship name" Name="STEWARDSHIPNAME" Length="25" Required="true" />
-    <TextField Description="Preferred school" Name="PREFERREDSCHOOL" Length="25" Required="true" />
-    <TextField Description="Established by" Name="ESTABLISHEDBY" Length="25" Required="true" />
-    <TextField Description="Constituent Type" Name="CONSTITUENTYPE" Length="25" Required="true" />
-    <TextField Description="Fund Restriction" Name="FUNDRESTRICTION" Length="25" Required="true" />
-    <TextField Description="MOA Date" Name="MOADATE" Length="25" Required="true" />
-    <TextField Description="Resolution/Endowed Date" Name="RESOLUTIONDATE" Length="25" Required="true" />
-    <TextField Description="Department" Name="DEPARTMENT" Length="25" Required="true" />
+<TableSpec 
+	xmlns="bb_appfx_table"
+	xmlns:c="bb_appfx_commontypes" 
+	ID="7b3cdc7f-5352-44b5-96e4-9f601166a1e4"
+	Name="USR UA DESIGNATIONNOTEEXT"
+	Description="Stores information about designationlevelnote records"
+	Author="ADV\msstu6"
+	Tablename="USR_UA_DESIGNATIONNOTEEXT"		   
+	IsBuiltIn="false"
+	>
+
+	<Fields>
+    <ForeignKeyField Description="Note that is tied to the designation." Name="DESIGNATIONLEVELID" Required="true" ForeignTable="DESIGNATIONLEVEL" OnDelete="CascadeDelete" />
+    <TextField Description="Status of the designation." Name="STATUS" Length="25" Required="true" />
+    <TextField Description="Stewardship of the designation." Name="STEWARDSHIPNAME" Length="255" Required="true" />
+    <TextField Description="Preferred school of the designation." Name="PREFERREDSCHOOL" Length="255" Required="true" />
+    <TextField Description="Established by" Name="ESTABLISHEDBY" Length="500" Required="true" />
+    <TextField Description="Stewardship of the designation." Name="CONSTITUENTTYPE" Length="255" Required="true" />
+    <TextField Description="Fund restriction." Name="FUNDRESTRICTION" Length="255" Required="true" />
+    <DateField Description="MOA Date" Name="MOADATE" Required="true" />
+    <DateField Description="Resolution date" Name="RESOLUTIONDATE" Required="true" />
+    <TextField Description="Department." Name="DEPARTMENT" Length="255" Required="true" />
   </Fields>
+
+
 </TableSpec>
