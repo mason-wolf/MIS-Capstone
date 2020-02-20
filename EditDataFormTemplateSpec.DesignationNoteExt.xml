@@ -111,12 +111,60 @@ return 0;
 	<!-- describe fields on the form, which correspond to parameters on the SP.  Note that system paramters 
 	like the record ID, DATALOADED, TSLONG, and CURRENTAPPUSERID need not be listed. -->
 	<FormMetaData xmlns="bb_appfx_commontypes">
+    
+    
 		<FormFields>
-			<FormField FieldID="DESIGNATIONSTATUS" Caption="Status" DataType="String" MaxLength="255" />
+      
+      <FormField FieldID="DESIGNATIONSTATUS" MaxLength="255" Caption="Status">
+        <ValueList>
+          <Items>
+            <Item>
+              <Value>Archived</Value>
+            </Item>
+            <Item>
+              <Value>In Progress</Value>
+            </Item>
+            <Item>
+              <Value>Testamentary</Value>
+            </Item>
+            <Item>
+              <Value>Stewarded</Value>
+            </Item>
+          </Items>
+        </ValueList>
+      </FormField>
+
       <FormField FieldID="STEWARDSHIPNAME" Caption="Stewardship Name" DataType="String" MaxLength="255" Multiline="true"/>
       <FormField FieldID="PREFERREDSCHOOL" Caption="Preferred School" DataType="String" MaxLength="255"/>
       <FormField FieldID="ESTABLISHEDBY" Caption="Established By" DataType="String" MaxLength="255" Multiline="true"/>
-      <FormField FieldID="CONSTITUENTTYPE" Caption="Constituent Type" DataType="String" MaxLength="255"/>
+
+      <FormField FieldID="CONSTITUENTTYPE" MaxLength="255" Caption="Constituent Type">
+        <ValueList>
+          <Items>
+            <Item>
+              <Value>Annual Fund</Value>
+            </Item>
+            <Item>
+              <Value>Award Fund</Value>
+            </Item>
+            <Item>
+              <Value>Chair</Value>
+            </Item>
+            <Item>
+              <Value>Other Endowed Fund</Value>
+            </Item>
+            <Item>
+              <Value>Professorship</Value>
+            </Item>
+            <Item>
+              <Value>Scholarship</Value>
+            </Item>
+            <Item>
+              <Value>Support Fund</Value>
+            </Item>
+          </Items>
+        </ValueList>
+      </FormField>
       <FormField FieldID="FUNDRESTRICTION" Caption="Fund Restriction" DataType="String" MaxLength="255" Multiline="true"/>
     </FormFields>
 	</FormMetaData>
