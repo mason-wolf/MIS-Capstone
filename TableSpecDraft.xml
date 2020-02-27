@@ -9,17 +9,18 @@
 	IsBuiltIn="false"
 	>
 
+
 	<Fields>
     <ForeignKeyField Description="Note that is tied to the designation." Name="DESIGNATIONLEVELID" Required="true" ForeignTable="DESIGNATIONLEVEL" OnDelete="CascadeDelete" />
-    <TextField Description="Status of the designation." Name="STATUS" Length="25" Required="true" />
-    <TextField Description="Stewardship of the designation." Name="STEWARDSHIPNAME" Length="255" Required="true" />
-    <TextField Description="Preferred school of the designation." Name="PREFERREDSCHOOL" Length="255" Required="true" />
-    <TextField Description="Established by" Name="ESTABLISHEDBY" Length="500" Required="true" />
-    <TextField Description="Stewardship of the designation." Name="CONSTITUENTTYPE" Length="255" Required="true" />
-    <TextField Description="Fund restriction." Name="FUNDRESTRICTION" Length="255" Required="true" />
-    <DateField Description="MOA Date" Name="MOADATE" Required="true" />
-    <DateField Description="Resolution date" Name="RESOLUTIONDATE" Required="true" />
-    <TextField Description="Department." Name="DEPARTMENT" Length="255" Required="true" />
+    <TextField Description="Status of the designation." Name="DESIGNATIONSTATUS" Length="25" Required="false" />
+    <TextField Description="Stewardship of the designation." Name="STEWARDSHIPNAME" Length="255" Required="false" />
+    <TextField Description="Preferred school of the designation." Name="PREFERREDSCHOOL" Length="255" Required="false" />
+    <TextField Description="Established by" Name="ESTABLISHEDBY" Length="500" Required="false" />
+    <TextField Description="Stewardship of the designation." Name="CONSTITUENTTYPE" Length="255" Required="false" />
+    <MemoField Description="Fund restriction." Name="FUNDRESTRICTION" />
+    <MemoField Description="MOA Date" Name="MOADATE" />
+    <MemoField Description="Resolution Date" Name="RESOLUTIONDATE" />
+    <TextField Description="Department" Name="DEPARTMENT" Length="255" Required="false" />
   </Fields>
 
 
