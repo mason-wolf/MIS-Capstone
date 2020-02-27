@@ -23,12 +23,13 @@ create procedure dbo.USR_UAUSP_DATAFORMTEMPLATE_EDITLOAD_DESIGNATIONLEVEL_EXT
     @ID uniqueidentifier,
     @DATALOADED bit = 0 output,
     @TSLONG bigint = 0 output,
-	@DESIGNATIONSTATUS nvarchar(255) = null output,
+	@DESIGNATIONSTATUSCODEID nvarchar(255) = null output,
   @STEWARDSHIPNAME nvarchar(255) = null output,
   @PREFERREDSCHOOL nvarchar(255) = null output,
   @ESTABLISHEDBY nvarchar(255) = null output,
   @CONSTITUENTTYPE nvarchar(255) = null output,
-  @FUNDRESTRICTION nvarchar(255) = null output
+  @FUNDRESTRICTION nvarchar(255) = null output,
+  @MOADATE nvarchar(255) = null output
 )
 as
 
@@ -45,14 +46,15 @@ as
 	select top 1
 		@DATALOADED = 1,
 		@TSLONG = TSLONG,
-		@DESIGNATIONSTATUS = DESIGNATIONSTATUS,
+		@DESIGNATIONSTATUSCODEID = DESIGNATIONSTATUSCODEID,
     @STEWARDSHIPNAME = STEWARDSHIPNAME,
     @PREFERREDSCHOOL = PREFERREDSCHOOL,
     @ESTABLISHEDBY = ESTABLISHEDBY,
     @CONSTITUENTTYPE = CONSTITUENTTYPE,
-    @FUNDRESTRICTION = FUNDRESTRICTION
-	from USR_UA_DESIGNATIONNOTEEXT
-	where USR_UA_DESIGNATIONNOTEEXT.DESIGNATIONLEVELID = @ID
+    @FUNDRESTRICTION = FUNDRESTRICTION,
+    @MOADATE = MOADATE
+	from USR_UA_DESIGNATIONLEVEL_EXT
+	where USR_UA_DESIGNATIONLEVEL_EXT.DESIGNATIONLEVELID = @ID
 
 	return 0;
 				]]>
@@ -66,12 +68,13 @@ create procedure dbo.USR_UAUSP_DATAFORMTEMPLATE_EDIT_DESIGNATIONLEVEL_EXT
 (
 	@ID uniqueidentifier,
 	@CHANGEAGENTID uniqueidentifier = null,
-	@DESIGNATIONSTATUS nvarchar(255),
+	@DESIGNATIONSTATUSCODEID nvarchar(255),
   @STEWARDSHIPNAME nvarchar(255),
   @PREFERREDSCHOOL nvarchar(255),
   @ESTABLISHEDBY nvarchar(255),
   @CONSTITUENTTYPE nvarchar(255),
-  @FUNDRESTRICTION nvarchar(255)
+  @FUNDRESTRICTION nvarchar(255),
+  @MOADATE nvarchar(255)
 )
 as
 
@@ -85,16 +88,17 @@ as
 
 	begin try
 		-- handle updating the data
-		update USR_UA_DESIGNATIONNOTEEXT set
-			DESIGNATIONSTATUS = @DESIGNATIONSTATUS,
+		update USR_UA_DESIGNATIONLEVEL_EXT set
+			DESIGNATIONSTATUSCODEID = @DESIGNATIONSTATUSCODEID,
       STEWARDSHIPNAME = @STEWARDSHIPNAME,
       PREFERREDSCHOOL = @PREFERREDSCHOOL,
       ESTABLISHEDBY = @ESTABLISHEDBY,
       CONSTITUENTTYPE = @CONSTITUENTTYPE,
       FUNDRESTRICTION = @FUNDRESTRICTION,
 			CHANGEDBYID = @CHANGEAGENTID,
-			DATECHANGED = @CURRENTDATE
-		where USR_UA_DESIGNATIONNOTEEXT.DESIGNATIONLEVELID = @ID 
+			DATECHANGED = @CURRENTDATE,
+      MOADATE = @MOADATE
+		where USR_UA_DESIGNATIONLEVEL_EXT.DESIGNATIONLEVELID = @ID 
 	end try
 	begin catch
 		exec dbo.USP_RAISE_ERROR
@@ -114,24 +118,11 @@ return 0;
     
     
 		<FormFields>
+
+      <FormField FieldID="MOADATE" Caption="MOA Date" DataType="Date"/>
       
-      <FormField FieldID="DESIGNATIONSTATUS" MaxLength="255" Caption="Status">
-        <ValueList>
-          <Items>
-            <Item>
-              <Value>Archived</Value>
-            </Item>
-            <Item>
-              <Value>In Progress</Value>
-            </Item>
-            <Item>
-              <Value>Testamentary</Value>
-            </Item>
-            <Item>
-              <Value>Stewarded</Value>
-            </Item>
-          </Items>
-        </ValueList>
+      <FormField FieldID="DESIGNATIONSTATUSCODEID" DataType="Guid" Caption="Status" Required="true">
+        <c:CodeTable CodeTableName="USR_UA_DESIGNATIONSTATUSCODE" />
       </FormField>
 
       <FormField FieldID="STEWARDSHIPNAME" Caption="Stewardship Name" DataType="String" MaxLength="255" Multiline="true"/>
