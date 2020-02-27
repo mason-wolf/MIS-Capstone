@@ -38,7 +38,7 @@ as
 	-- will display a "no data loaded" message.
   
 	select @DATALOADED = 1,
-		   @DESIGNATIONSTATUS = DESIGNATIONSTATUS,
+		   @DESIGNATIONSTATUS = USR_UA_DESIGNATIONSTATUSCODE.DESCRIPTION,
        @STEWARDSHIPNAME = STEWARDSHIPNAME,
        @PREFERREDSCHOOL = PREFERREDSCHOOL,
        @ESTABLISHEDBY = ESTABLISHEDBY,
@@ -46,8 +46,9 @@ as
        @FUNDRESTRICTION = FUNDRESTRICTION,
        @MOADATE = MOADATE,
        @RESOLUTIONDATE = RESOLUTIONDATE
-	from USR_UA_DESIGNATIONNOTEEXT
-	where USR_UA_DESIGNATIONNOTEEXT.DESIGNATIONLEVELID = @ID
+	from USR_UA_DESIGNATIONLEVEL_EXT
+  join USR_UA_DESIGNATIONSTATUSCODE ON USR_UA_DESIGNATIONLEVEL_EXT.DESIGNATIONSTATUSCODEID = USR_UA_DESIGNATIONSTATUSCODE.ID
+	where USR_UA_DESIGNATIONLEVEL_EXT.DESIGNATIONLEVELID = @ID
 	
 	return 0;
 			]]>
@@ -58,13 +59,13 @@ as
 	like the context @ID, @DATALOADED, and @CURRENTAPPUSERID need not be listed. -->
 	<FormMetaData xmlns="bb_appfx_commontypes">
 		<FormFields>
+      <FormField FieldID="MOADATE" Caption="MOA Date" DataType="Date" MaxLength="255" />
 			<FormField FieldID="DESIGNATIONSTATUS" Caption="Status" DataType="String" MaxLength="255" />
       <FormField FieldID="STEWARDSHIPNAME" Caption="Stewardship Name" DataType="String" MaxLength="255" />
       <FormField FieldID="PREFERREDSCHOOL" Caption="Preferred School" DataType="String" MaxLength="255" />
       <FormField FieldID="ESTABLISHEDBY" Caption="Established By" DataType="String" MaxLength="255" />
       <FormField FieldID="CONSTITUENTTYPE" Caption="Constituent Type" DataType="String" MaxLength="255" />
       <FormField FieldID="FUNDRESTRICTION" Caption="Fund Restriction" DataType="String" MaxLength="255" />
-      <FormField FieldID="MOADATE" Caption="MOA Date" DataType="String" MaxLength="255" />
       <FormField FieldID="RESOLUTIONDATE" Caption="Resolution Date" DataType="String" MaxLength="255" />
 		</FormFields>
 	</FormMetaData>
