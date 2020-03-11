@@ -1,0 +1,11 @@
+﻿<CodeTableSpec 
+	xmlns="bb_appfx_codetable" 
+	xmlns:c="bb_appfx_commontypes"
+	ID="33221ffc-102b-45bc-8da5-efb73a9f80b1" 
+	Name="Designation Constituent Type Code Table Spec"
+	Description="Stores constituent types for a designation"
+	Author="ADV\msstu6"
+	DBTablename="USR_UA_DESIGNATIONCONSTITUENTTYPECODE"
+	Category="Designation Level Info"
+	SortMethod="Alpha"
+/>

@@ -1,0 +1,12 @@
+﻿<CodeTableSpec 
+	xmlns="bb_appfx_codetable" 
+	xmlns:c="bb_appfx_commontypes"
+	ID="a667621c-5f22-45ec-a1b7-c605b1de19e5" 
+	Name="Designation Status Code Table Spec"
+	Description="Stores status for a designation"
+	Author="ADV\msstu6"
+	DBTablename="USR_UA_DESIGNATIONSTATUSCODE"
+	Category="Designation Level Info"
+	SortMethod="Alpha"
+/>
+

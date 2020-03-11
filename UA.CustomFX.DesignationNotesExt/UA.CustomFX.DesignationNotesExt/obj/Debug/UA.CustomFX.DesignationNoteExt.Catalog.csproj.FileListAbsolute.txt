@@ -1,0 +1,6 @@
+C:\Program Files\Blackbaud\bbappfx\vroot\bin\custom\UA.CustomFX.DesignationNotesExt.dll
+C:\Program Files\Blackbaud\bbappfx\vroot\bin\custom\UA.CustomFX.DesignationNotesExt.pdb
+C:\Program Files\Blackbaud\bbappfx\vroot\bin\custom\UA.CustomFX.DesignationNotesExt.dll.CodeAnalysisLog.xml
+C:\Program Files\Blackbaud\bbappfx\vroot\bin\custom\UA.CustomFX.DesignationNotesExt.dll.lastcodeanalysissucceeded
+C:\Users\msstu6\Documents\Visual Studio 2012\Projects\UA.CustomFX.DesignationNotesExt\UA.CustomFX.DesignationNotesExt\obj\Debug\UA.CustomFX.DesignationNotesExt.dll
+C:\Users\msstu6\Documents\Visual Studio 2012\Projects\UA.CustomFX.DesignationNotesExt\UA.CustomFX.DesignationNotesExt\obj\Debug\UA.CustomFX.DesignationNotesExt.pdb

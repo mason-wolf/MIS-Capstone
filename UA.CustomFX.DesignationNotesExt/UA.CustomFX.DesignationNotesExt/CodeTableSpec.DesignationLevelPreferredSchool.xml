@@ -1,0 +1,11 @@
+﻿<CodeTableSpec 
+	xmlns="bb_appfx_codetable" 
+	xmlns:c="bb_appfx_commontypes"
+	ID="58bf49a6-579e-436d-8f65-fd3618e22359" 
+	Name="Designation Preferred School Code Table Spec"
+	Description="Stores preferred school for a designation"
+	Author="ADV\msstu6"
+	DBTablename="USR_UA_DESIGNATIONPREFERREDSCHOOLCODE"
+	Category="Designation Level Info"
+	SortMethod="Alpha"
+/>
