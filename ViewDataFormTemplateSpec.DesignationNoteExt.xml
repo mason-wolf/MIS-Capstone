@@ -18,6 +18,7 @@ create procedure dbo.USR_UAUSP_DATAFORMTEMPLATE_VIEW_VIEWDESIGNATIONNOTE_EXT
 (
 	@ID uniqueidentifier,
 	@DATALOADED bit = 0 output,
+  @FUNDMANAGERID nvarchar(255) = null output,
 	@DESIGNATIONSTATUS nvarchar(255) = null output,
   @STEWARDSHIPNAME nvarchar(255) = null output,
   @PREFERREDSCHOOL nvarchar(255) = null output,
@@ -25,7 +26,8 @@ create procedure dbo.USR_UAUSP_DATAFORMTEMPLATE_VIEW_VIEWDESIGNATIONNOTE_EXT
   @CONSTITUENTTYPE nvarchar(255) = null output,
   @FUNDRESTRICTION nvarchar(255) = null output,
   @MOADATE nvarchar(255) = null output,
-  @RESOLUTIONDATE nvarchar(255) = null output
+  @RESOLUTIONDATE nvarchar(255) = null output,
+  @DEPARTMENT nvarchar(255) = null output
 )
 as
 	set nocount on;
@@ -38,6 +40,7 @@ as
 	-- will display a "no data loaded" message.
   
 	select @DATALOADED = 1,
+       @FUNDMANAGERID = (SELECT NAME FROM CONSTITUENT WHERE ID=FUNDMANAGERID),
 		   @DESIGNATIONSTATUS = USR_UA_DESIGNATIONSTATUSCODE.DESCRIPTION,
        @STEWARDSHIPNAME = STEWARDSHIPNAME,
        @PREFERREDSCHOOL = USR_UA_DESIGNATIONPREFERREDSCHOOLCODE.DESCRIPTION,
@@ -45,13 +48,16 @@ as
        @CONSTITUENTTYPE = USR_UA_DESIGNATIONCONSTITUENTTYPECODE.DESCRIPTION,
        @FUNDRESTRICTION = FUNDRESTRICTION,
        @MOADATE = MOADATE,
-       @RESOLUTIONDATE = RESOLUTIONDATE
+       @RESOLUTIONDATE = RESOLUTIONDATE,
+       @DEPARTMENT = USR_UA_DESIGNATIONDEPARTMENTCODE.DESCRIPTION
 	from USR_UA_DESIGNATIONLEVEL_EXT
   join USR_UA_DESIGNATIONSTATUSCODE ON USR_UA_DESIGNATIONLEVEL_EXT.DESIGNATIONSTATUSCODEID = USR_UA_DESIGNATIONSTATUSCODE.ID
   join USR_UA_DESIGNATIONPREFERREDSCHOOLCODE ON USR_UA_DESIGNATIONLEVEL_EXT.PREFERREDSCHOOLCODEID = USR_UA_DESIGNATIONPREFERREDSCHOOLCODE.ID
   join USR_UA_DESIGNATIONCONSTITUENTTYPECODE ON USR_UA_DESIGNATIONLEVEL_EXT.CONSTITUENTTYPECODEID = USR_UA_DESIGNATIONCONSTITUENTTYPECODE.ID
+  join USR_UA_DESIGNATIONDEPARTMENTCODE ON USR_UA_DESIGNATIONLEVEL_EXT.DEPARTMENTCODEID = USR_UA_DESIGNATIONDEPARTMENTCODE.ID
 	where USR_UA_DESIGNATIONLEVEL_EXT.DESIGNATIONLEVELID = @ID
 	
+  
 	return 0;
 			]]>
 		</c:CreateProcedureSQL>
@@ -62,13 +68,15 @@ as
 	<FormMetaData xmlns="bb_appfx_commontypes">
 		<FormFields>
       <FormField FieldID="MOADATE" Caption="MOA Date" DataType="Date" MaxLength="255" />
-      <FormField FieldID="RESOLUTIONDATE" Caption="Resolution Date" DataType="String" MaxLength="255" />
+      <FormField FieldID="RESOLUTIONDATE" Caption="Resolution Date" DataType="Date" MaxLength="255" />
 			<FormField FieldID="DESIGNATIONSTATUS" Caption="Status" DataType="String" MaxLength="255" />
       <FormField FieldID="STEWARDSHIPNAME" Caption="Stewardship Name" DataType="String" MaxLength="255" />
       <FormField FieldID="PREFERREDSCHOOL" Caption="Preferred School" DataType="String" MaxLength="255" />
       <FormField FieldID="ESTABLISHEDBY" Caption="Established By" DataType="String" MaxLength="255" />
       <FormField FieldID="CONSTITUENTTYPE" Caption="Constituent Type" DataType="String" MaxLength="255" />
       <FormField FieldID="FUNDRESTRICTION" Caption="Fund Restriction" DataType="String" MaxLength="255" />
+      <FormField FieldID="FUNDMANAGERID" DataType="String" Caption="Fund Manager"/>
+      <FormField FieldID="DEPARTMENT" DataType="String" Caption="Department"/>
 		</FormFields>
 	</FormMetaData>
 
