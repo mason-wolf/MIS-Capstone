@@ -1,0 +1,1766 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Body>
+    <ReportItems>
+      <Tablix Name="Tablix1">
+        <TablixBody>
+          <TablixColumns>
+            <TablixColumn>
+              <Width>0.52246in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>2.67871in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>2.19954in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>2.45833in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>5.36621in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>4.17871in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>4.2308in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>5.09538in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>3.87663in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>2.03288in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1.03288in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1.03288in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>3.35579in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>2.12663in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>0.45834in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1in</Width>
+            </TablixColumn>
+          </TablixColumns>
+          <TablixRows>
+            <TablixRow>
+              <Height>0.25in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox13">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>ID</Value>
+                              <Style>
+                                <FontSize>6pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox13</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>LightGrey</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox19">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Stewardship Name</Value>
+                              <Style>
+                                <FontSize>6pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox19</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>LightGrey</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox20">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Stewardship Contact Name</Value>
+                              <Style>
+                                <FontSize>6pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox19</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>LightGrey</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox7">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Stewardship Contact Formal Name</Value>
+                              <Style>
+                                <FontSize>6pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox7</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>LightGrey</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox21">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Established By</Value>
+                              <Style>
+                                <FontSize>6pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox21</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>LightGrey</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox23">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Restriction</Value>
+                              <Style>
+                                <FontSize>6pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox23</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>LightGrey</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox25">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Book Value</Value>
+                              <Style>
+                                <FontSize>6pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox25</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>LightGrey</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox27">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Tuition</Value>
+                              <Style>
+                                <FontSize>6pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox27</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>LightGrey</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox29">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Amount  Awarded</Value>
+                              <Style>
+                                <FontSize>6pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox29</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>LightGrey</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox31">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Division</Value>
+                              <Style>
+                                <FontSize>6pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox31</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>LightGrey</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox34">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Type Group</Value>
+                              <Style>
+                                <FontSize>6pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox34</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>LightGrey</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox36">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Fund Manager</Value>
+                              <Style>
+                                <FontSize>6pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox36</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>LightGrey</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox38">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Name City  State Major</Value>
+                              <Style>
+                                <FontSize>6pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox38</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>LightGrey</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox40">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Earnings Expenditures</Value>
+                              <Style>
+                                <FontSize>6pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox40</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>LightGrey</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox1">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Year</Value>
+                              <Style>
+                                <FontSize>6pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox1</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>LightGrey</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox3">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Chart</Value>
+                              <Style>
+                                <FontSize>6pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox3</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>LightGrey</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox4">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>FUND(s)</Value>
+                              <Style>
+                                <FontSize>6pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox4</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>LightGrey</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox5">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>ASAS Code</Value>
+                              <Style>
+                                <FontSize>6pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox5</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>LightGrey</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox6">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Org Code</Value>
+                              <Style>
+                                <FontSize>6pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox6</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>LightGrey</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+            <TablixRow>
+              <Height>0.25in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="PURPOSE_NAME">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!PURPOSE_NAME.Value</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>PURPOSE_NAME</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="STEWARDSHIP_NAME">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!STEWARDSHIP_NAME.Value</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>STEWARDSHIP_NAME</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="STEWARDSHIP_CONTACT_NAME">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!STEWARDSHIP_CONTACT_NAME.Value</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>STEWARDSHIP_CONTACT_NAME</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="STEWARDSHIP_CONTACT_FORMAL_NAME">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!STEWARDSHIP_CONTACT_FORMAL_NAME.Value</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>STEWARDSHIP_CONTACT_FORMAL_NAME</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="ESTABLISHED_BY">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>= "The " 
++ Fields!STEWARDSHIP_NAME.Value + " was established in " 
++ IIf(IsNothing(Fields!ENDOWED_DATE.Value),Fields!MOA_DATE.Value,Fields!ENDOWED_DATE.Value)
++ Fields!ESTABLISHED_BY.Value</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>ESTABLISHED_BY</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="RESTRICTION">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!RESTRICTION.Value</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>RESTRICTION</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="BOOKVALUEEND">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>="As of " 
+&amp; MonthName(Month(Parameters!AWARDDATE.Value)) &amp;" "&amp;Day(Parameters!AWARDDATE.Value) &amp; ", "  &amp; Year(Parameters!AWARDDATE.Value) &amp; "," 
+&amp; " the book value of the "
+&amp; Fields!STEWARDSHIP_NAME.Value &amp; " was "
+&amp; FormatCurrency((Fields!BOOKVALUEEND.Value)) &amp; " and the fair market value was "
+&amp; FormatCurrency((Fields!MARKETVALUEEND.Value)) &amp; ". " 
+&amp; Fields!MARKETVALUEMSG.Value</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>BOOKVALUEEND</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>=IIF(Fields!BOOKVALUEEND.Value &gt;= 1000000, "#a44fef", "Transparent")</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="MARKETVALUEEND">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>="Current tuition is " 
++ FormatCurrency(Parameters!InStateTuition.Value,0)
++ " for an Alabama resident and " 
++ FormatCurrency(Parameters!OutOfStateTuition.Value,0)
++ " for an out-of-state resident per semester."</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>MARKETVALUEEND</rd:DefaultName>
+                      <Visibility>
+                        <Hidden>=IIF(Fields!TYPE_GROUP.Value = "Scholarship", false, true)</Hidden>
+                      </Visibility>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                    <rd:Selected>true</rd:Selected>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="DIVISION">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=IIf
+(
+	IsNothing(Fields!RECIPIENT_NAMECITYSTATEMAJOR.Value),
+	"From " + Fields!BEGIN_TERM.Value + " through " + Fields!END_TERM.Value + ", a total of " + FormatCurrency(Fields!RECIPIENT_AMOUNT.Value,0) + " was awarded to the following students:",
+	IIf
+	(
+		Fields!RECIPIENT_NAMECITYSTATEMAJOR.Value Like "*;*",
+		"From " + Fields!BEGIN_TERM.Value + " through " + Fields!END_TERM.Value + ", a total of " + FormatCurrency(Fields!RECIPIENT_AMOUNT.Value,0) + " was awarded to the following students:",
+		IIf
+		(
+			Fields!SITE.Value &lt;&gt; "Athletics",
+			"From "
+				+ Fields!BEGIN_TERM.Value
+				+ " through "
+				+ Fields!END_TERM.Value
+				+ ", a total of "
+				+ FormatCurrency(Fields!RECIPIENT_AMOUNT.Value,0)
+				+ " was awarded to " + Fields!STUDENT.Value
+				+ IIf
+					(
+						IsNothing(Fields!HOMETOWN.Value) or Fields!HOMETOWN.Value = "",
+						"",
+						IIF
+						(
+							IsNothing(Fields!MAJOR.Value) or Fields!MAJOR.Value = "",
+							" of " + Fields!HOMETOWN.Value + ".",
+							" of " + Fields!HOMETOWN.Value + ","
+						)
+					)
+				+ IIf
+					(
+						IsNothing(Fields!MAJOR.Value) or Fields!MAJOR.Value = "",
+						"",
+						
+						IIf
+					(
+						Fields!MAJOR.Value = "undeclared",
+						" whose major is undeclared.",
+
+						" who is majoring in " + Fields!MAJOR.Value + "."
+					)
+						
+
+					)
+				,
+			SWITCH
+			(
+				Fields!SPORT.Value = "Band", "During the " + Fields!BEGIN_YEAR.Value + "-" + Fields!END_YEAR.Value + " academic year, a total of " + FormatCurrency(Fields!RECIPIENT_AMOUNT.Value,0) + " was awarded to " + Fields!STUDENT.Value + " of " + Fields!HOMETOWN.Value + ", a band member majoring in " + Fields!MAJOR.Value + ".",
+				Fields!SPORT.Value = "Baseball", "During the " + Fields!BEGIN_YEAR.Value + "-" + Fields!END_YEAR.Value + " academic year, a total of " + FormatCurrency(Fields!RECIPIENT_AMOUNT.Value,0) + " was awarded to " + Fields!STUDENT.Value + " of " + Fields!HOMETOWN.Value + ", a baseball player majoring in " + Fields!MAJOR.Value + ".",
+				Fields!SPORT.Value = "Basketball", "During the " + Fields!BEGIN_YEAR.Value + "-" + Fields!END_YEAR.Value + " academic year, a total of " + FormatCurrency(Fields!RECIPIENT_AMOUNT.Value,0) + " was awarded to " + Fields!STUDENT.Value + " of " + Fields!HOMETOWN.Value + ", a basketball player majoring in " + Fields!MAJOR.Value + ".",
+				Fields!SPORT.Value = "Men's Basketball", "During the " + Fields!BEGIN_YEAR.Value + "-" + Fields!END_YEAR.Value + " academic year, a total of " + FormatCurrency(Fields!RECIPIENT_AMOUNT.Value,0) + " was awarded to " + Fields!STUDENT.Value + " of " + Fields!HOMETOWN.Value + ", a basketball player majoring in " + Fields!MAJOR.Value + ".",
+				Fields!SPORT.Value = "Women's Basketball", "During the " + Fields!BEGIN_YEAR.Value + "-" + Fields!END_YEAR.Value + " academic year, a total of " + FormatCurrency(Fields!RECIPIENT_AMOUNT.Value,0) + " was awarded to " + Fields!STUDENT.Value + " of " + Fields!HOMETOWN.Value + ", a basketball player majoring in " + Fields!MAJOR.Value + ".",
+				Fields!SPORT.Value = "Cheer", "During the " + Fields!BEGIN_YEAR.Value + "-" + Fields!END_YEAR.Value + " academic year, a total of " + FormatCurrency(Fields!RECIPIENT_AMOUNT.Value,0) + " was awarded to " + Fields!STUDENT.Value + " of " + Fields!HOMETOWN.Value + ", a cheerleader majoring in " + Fields!MAJOR.Value + ".",
+				Fields!SPORT.Value = "Football", "During the " + Fields!BEGIN_YEAR.Value + "-" + Fields!END_YEAR.Value + " academic year, a total of " + FormatCurrency(Fields!RECIPIENT_AMOUNT.Value,0) + " was awarded to " + Fields!STUDENT.Value + " of " + Fields!HOMETOWN.Value + ", a football player majoring in " + Fields!MAJOR.Value + ".",
+				Fields!SPORT.Value = "Golf ", "During the " + Fields!BEGIN_YEAR.Value + "-" + Fields!END_YEAR.Value + " academic year, a total of " + FormatCurrency(Fields!RECIPIENT_AMOUNT.Value,0) + " was awarded to " + Fields!STUDENT.Value + " of " + Fields!HOMETOWN.Value + ", a golfer majoring in " + Fields!MAJOR.Value + ".",
+				Fields!SPORT.Value = "Men's Golf ", "During the " + Fields!BEGIN_YEAR.Value + "-" + Fields!END_YEAR.Value + " academic year, a total of " + FormatCurrency(Fields!RECIPIENT_AMOUNT.Value,0) + " was awarded to " + Fields!STUDENT.Value + " of " + Fields!HOMETOWN.Value + ", a golfer majoring in " + Fields!MAJOR.Value + ".",
+				Fields!SPORT.Value = "Women's Golf", "During the " + Fields!BEGIN_YEAR.Value + "-" + Fields!END_YEAR.Value + " academic year, a total of " + FormatCurrency(Fields!RECIPIENT_AMOUNT.Value,0) + " was awarded to " + Fields!STUDENT.Value + " of " + Fields!HOMETOWN.Value + ", a golfer majoring in " + Fields!MAJOR.Value + ".",
+				Fields!SPORT.Value = "Gymnastics", "During the " + Fields!BEGIN_YEAR.Value + "-" + Fields!END_YEAR.Value + " academic year, a total of " + FormatCurrency(Fields!RECIPIENT_AMOUNT.Value,0) + " was awarded to " + Fields!STUDENT.Value + " of " + Fields!HOMETOWN.Value + ", a gymnast majoring in " + Fields!MAJOR.Value + ".",
+				Fields!SPORT.Value = "Men's Gymnastics", "During the " + Fields!BEGIN_YEAR.Value + "-" + Fields!END_YEAR.Value + " academic year, a total of " + FormatCurrency(Fields!RECIPIENT_AMOUNT.Value,0) + " was awarded to " + Fields!STUDENT.Value + " of " + Fields!HOMETOWN.Value + ", a gymnast majoring in " + Fields!MAJOR.Value + ".",
+				Fields!SPORT.Value = "Women's Gymnastics", "During the " + Fields!BEGIN_YEAR.Value + "-" + Fields!END_YEAR.Value + " academic year, a total of " + FormatCurrency(Fields!RECIPIENT_AMOUNT.Value,0) + " was awarded to " + Fields!STUDENT.Value + " of " + Fields!HOMETOWN.Value + ", a gymnast majoring in " + Fields!MAJOR.Value + ".",
+				Fields!SPORT.Value = "Rowing", "During the " + Fields!BEGIN_YEAR.Value + "-" + Fields!END_YEAR.Value + " academic year, a total of " + FormatCurrency(Fields!RECIPIENT_AMOUNT.Value,0) + " was awarded to " + Fields!STUDENT.Value + " of " + Fields!HOMETOWN.Value + ", a rower majoring in " + Fields!MAJOR.Value + ".",
+				Fields!SPORT.Value = "Men's Rowing", "During the " + Fields!BEGIN_YEAR.Value + "-" + Fields!END_YEAR.Value + " academic year, a total of " + FormatCurrency(Fields!RECIPIENT_AMOUNT.Value,0) + " was awarded to " + Fields!STUDENT.Value + " of " + Fields!HOMETOWN.Value + ", a rower majoring in " + Fields!MAJOR.Value + ".",
+				Fields!SPORT.Value = "Women's Rowing", "During the " + Fields!BEGIN_YEAR.Value + "-" + Fields!END_YEAR.Value + " academic year, a total of " + FormatCurrency(Fields!RECIPIENT_AMOUNT.Value,0) + " was awarded to " + Fields!STUDENT.Value + " of " + Fields!HOMETOWN.Value + ", a rower majoring in " + Fields!MAJOR.Value + ".",
+				Fields!SPORT.Value = "Soccer", "During the " + Fields!BEGIN_YEAR.Value + "-" + Fields!END_YEAR.Value + " academic year, a total of " + FormatCurrency(Fields!RECIPIENT_AMOUNT.Value,0) + " was awarded to " + Fields!STUDENT.Value + " of " + Fields!HOMETOWN.Value + ", a soccer player majoring in " + Fields!MAJOR.Value + ".",
+				Fields!SPORT.Value = "Men's Soccer", "During the " + Fields!BEGIN_YEAR.Value + "-" + Fields!END_YEAR.Value + " academic year, a total of " + FormatCurrency(Fields!RECIPIENT_AMOUNT.Value,0) + " was awarded to " + Fields!STUDENT.Value + " of " + Fields!HOMETOWN.Value + ", a soccer player majoring in " + Fields!MAJOR.Value + ".",
+				Fields!SPORT.Value = "Women's Soccer", "During the " + Fields!BEGIN_YEAR.Value + "-" + Fields!END_YEAR.Value + " academic year, a total of " + FormatCurrency(Fields!RECIPIENT_AMOUNT.Value,0) + " was awarded to " + Fields!STUDENT.Value + " of " + Fields!HOMETOWN.Value + ", a soccer player majoring in " + Fields!MAJOR.Value + ".",
+				Fields!SPORT.Value = "Softball", "During the " + Fields!BEGIN_YEAR.Value + "-" + Fields!END_YEAR.Value + " academic year, a total of " + FormatCurrency(Fields!RECIPIENT_AMOUNT.Value,0) + " was awarded to " + Fields!STUDENT.Value + " of " + Fields!HOMETOWN.Value + ", a softball player majoring in " + Fields!MAJOR.Value + ".",
+				Fields!SPORT.Value = "Swimming", "During the " + Fields!BEGIN_YEAR.Value + "-" + Fields!END_YEAR.Value + " academic year, a total of " + FormatCurrency(Fields!RECIPIENT_AMOUNT.Value,0) + " was awarded to " + Fields!STUDENT.Value + " of " + Fields!HOMETOWN.Value + ", a swimmer majoring in " + Fields!MAJOR.Value + ".",
+				Fields!SPORT.Value = "Men's Swimming", "During the " + Fields!BEGIN_YEAR.Value + "-" + Fields!END_YEAR.Value + " academic year, a total of " + FormatCurrency(Fields!RECIPIENT_AMOUNT.Value,0) + " was awarded to " + Fields!STUDENT.Value + " of " + Fields!HOMETOWN.Value + ", a swimmer majoring in " + Fields!MAJOR.Value + ".",
+				Fields!SPORT.Value = "Women's Swimming", "During the " + Fields!BEGIN_YEAR.Value + "-" + Fields!END_YEAR.Value + " academic year, a total of " + FormatCurrency(Fields!RECIPIENT_AMOUNT.Value,0) + " was awarded to " + Fields!STUDENT.Value + " of " + Fields!HOMETOWN.Value + ", a swimmer majoring in " + Fields!MAJOR.Value + ".",
+				Fields!SPORT.Value = "Tennis", "During the " + Fields!BEGIN_YEAR.Value + "-" + Fields!END_YEAR.Value + " academic year, a total of " + FormatCurrency(Fields!RECIPIENT_AMOUNT.Value,0) + " was awarded to " + Fields!STUDENT.Value + " of " + Fields!HOMETOWN.Value + ", a tennis player majoring in " + Fields!MAJOR.Value + ".",
+				Fields!SPORT.Value = "Men's Tennis", "During the " + Fields!BEGIN_YEAR.Value + "-" + Fields!END_YEAR.Value + " academic year, a total of " + FormatCurrency(Fields!RECIPIENT_AMOUNT.Value,0) + " was awarded to " + Fields!STUDENT.Value + " of " + Fields!HOMETOWN.Value + ", a tennis player majoring in " + Fields!MAJOR.Value + ".",
+				Fields!SPORT.Value = "Women's Tennis", "During the " + Fields!BEGIN_YEAR.Value + "-" + Fields!END_YEAR.Value + " academic year, a total of " + FormatCurrency(Fields!RECIPIENT_AMOUNT.Value,0) + " was awarded to " + Fields!STUDENT.Value + " of " + Fields!HOMETOWN.Value + ", a tennis player majoring in " + Fields!MAJOR.Value + ".",
+				Fields!SPORT.Value = "Track", "During the " + Fields!BEGIN_YEAR.Value + "-" + Fields!END_YEAR.Value + " academic year, a total of " + FormatCurrency(Fields!RECIPIENT_AMOUNT.Value,0) + " was awarded to " + Fields!STUDENT.Value + " of " + Fields!HOMETOWN.Value + ", a track athlete majoring in " + Fields!MAJOR.Value + ".",
+				Fields!SPORT.Value = "Men's Track", "During the " + Fields!BEGIN_YEAR.Value + "-" + Fields!END_YEAR.Value + " academic year, a total of " + FormatCurrency(Fields!RECIPIENT_AMOUNT.Value,0) + " was awarded to " + Fields!STUDENT.Value + " of " + Fields!HOMETOWN.Value + ", a track athlete majoring in " + Fields!MAJOR.Value + ".",
+				Fields!SPORT.Value = "Women's Track", "During the " + Fields!BEGIN_YEAR.Value + "-" + Fields!END_YEAR.Value + " academic year, a total of " + FormatCurrency(Fields!RECIPIENT_AMOUNT.Value,0) + " was awarded to " + Fields!STUDENT.Value + " of " + Fields!HOMETOWN.Value + ", a track athlete majoring in " + Fields!MAJOR.Value + ".",
+				IsNothing(Fields!SPORT.Value), "During the " + Fields!BEGIN_YEAR.Value + "-" + Fields!END_YEAR.Value + " academic year, a total of " + FormatCurrency(Fields!RECIPIENT_AMOUNT.Value,0) + " was awarded to the following student(s):",
+				true, "Needs review."
+			)
+		)
+	)
+)</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>DIVISION</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>=IIF(Fields!RECIPIENT_AMOUNT.Value = 0, "#f4ee42", "Transparent")</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="DIVISION1">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!DIVISION.Value</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>DIVISION1</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="TYPE_GROUP">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!TYPE_GROUP.Value</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>TYPE_GROUP</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="FUNDMANAGER">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!FUNDMANAGER.Value</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>FUNDMANAGER</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="RECIPIENT_NAMECITYSTATEMAJOR">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=IIf
+	(
+		Fields!RECIPIENT_NAMECITYSTATEMAJOR.Value Like "*;*",
+		Fields!RECIPIENT_NAMECITYSTATEMAJOR.Value,
+		Nothing
+	)</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>RECIPIENT_NAMECITYSTATEMAJOR</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="EARNINGS_EXPENDITURES">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>="During the " + Parameters!AcademicYear.Value + " fiscal year, "  +
+ FormatCurrency(Fields!EARNINGS_EXPENDITURES.Value) + 
+ " was expended from the fund."</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>EARNINGS_EXPENDITURES</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>=IIF(Fields!EARNINGS_EXPENDITURES.Value = 0, "#f4ee42", "Transparent")</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox2">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Parameters!AcademicYear.Value</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox2</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="CHART">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!CHART.Value</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>CHART</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="FUND1">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!FUND.Value</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>FUND1</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="FUND">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!ASAS_CODE.Value</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>FUND</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="ORG">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!ORG.Value</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>ORG</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+          </TablixRows>
+        </TablixBody>
+        <TablixColumnHierarchy>
+          <TablixMembers>
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+          </TablixMembers>
+        </TablixColumnHierarchy>
+        <TablixRowHierarchy>
+          <TablixMembers>
+            <TablixMember>
+              <KeepWithGroup>After</KeepWithGroup>
+            </TablixMember>
+            <TablixMember>
+              <Group Name="Details" />
+            </TablixMember>
+          </TablixMembers>
+        </TablixRowHierarchy>
+        <DataSetName>DtsStweardshipPrintReport</DataSetName>
+        <Height>0.5in</Height>
+        <Width>44.64617in</Width>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Tablix>
+    </ReportItems>
+    <Height>2in</Height>
+    <Style />
+  </Body>
+  <Width>44.64617in</Width>
+  <Page>
+    <LeftMargin>1in</LeftMargin>
+    <RightMargin>1in</RightMargin>
+    <TopMargin>1in</TopMargin>
+    <BottomMargin>1in</BottomMargin>
+    <Style />
+  </Page>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="BBAppFxDB">
+      <DataSourceReference>BBAppFxDB</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>b28582ac-7c08-4404-b33f-96d47ef3f4d5</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="DtsStweardshipPrintReport">
+      <Query>
+        <DataSourceName>BBAppFxDB</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@FINANCIAL_INFO_START_DATE">
+            <Value>=Parameters!FINANCIAL_INFO_START_DATE.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@FINANCIAL_INFO_END_DATE">
+            <Value>=Parameters!FINANCIAL_INFO_END_DATE.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@AWARDDATE">
+            <Value>=Parameters!AWARDDATE.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@InStateTuition">
+            <Value>=Parameters!InStateTuition.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@OutOfStateTuition">
+            <Value>=Parameters!OutOfStateTuition.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@AcademicYear">
+            <Value>=Parameters!AcademicYear.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@SemesterTermBegin">
+            <Value>=Parameters!SemesterTermBegin.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@SemesterTermEnd">
+            <Value>=Parameters!SemesterTermEnd.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@SITENAME">
+            <Value>=Parameters!SITENAME.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@CHART">
+            <Value>=Parameters!CHART.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>USR_NEW_STEWARDSHIP_PRINTREPORT</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="PURPOSE_NAME">
+          <DataField>PURPOSE_NAME</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ID">
+          <DataField>ID</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="STEWARDSHIP_NAME">
+          <DataField>STEWARDSHIP_NAME</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="STEWARDSHIP_CONTACT_ID">
+          <DataField>STEWARDSHIP_CONTACT_ID</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="STEWARDSHIP_LOOKUPID">
+          <DataField>STEWARDSHIP_LOOKUPID</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="STEWARDSHIP_CONTACT_NAME">
+          <DataField>STEWARDSHIP_CONTACT_NAME</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ESTABLISHED_BY">
+          <DataField>ESTABLISHED_BY</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="STEWARDSHIP_CONTACT_FORMAL_NAME">
+          <DataField>STEWARDSHIP_CONTACT_FORMAL_NAME</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MOA_DATE">
+          <DataField>MOA_DATE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ENDOWED_DATE">
+          <DataField>ENDOWED_DATE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RESTRICTION">
+          <DataField>RESTRICTION</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BOOKVALUEEND">
+          <DataField>BOOKVALUEEND</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="MARKETVALUEEND">
+          <DataField>MARKETVALUEEND</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="DIVISION">
+          <DataField>DIVISION</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TYPE_GROUP">
+          <DataField>TYPE_GROUP</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="EARNINGS_EXPENDITURES">
+          <DataField>EARNINGS_EXPENDITURES</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="RECIPIENT_AMOUNT">
+          <DataField>RECIPIENT_AMOUNT</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="RECIPIENT_NAMECITYSTATEMAJOR">
+          <DataField>RECIPIENT_NAMECITYSTATEMAJOR</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BEGIN_TERM">
+          <DataField>BEGIN_TERM</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BEGIN_YEAR">
+          <DataField>BEGIN_YEAR</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="END_TERM">
+          <DataField>END_TERM</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="END_YEAR">
+          <DataField>END_YEAR</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CHART">
+          <DataField>CHART</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MARKETVALUEMSG">
+          <DataField>MARKETVALUEMSG</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FUND">
+          <DataField>FUND</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ASAS_CODE">
+          <DataField>ASAS_CODE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SITE">
+          <DataField>SITE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="STUDENT">
+          <DataField>STUDENT</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MAJOR">
+          <DataField>MAJOR</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="HOMETOWN">
+          <DataField>HOMETOWN</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SPORT">
+          <DataField>SPORT</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ORG">
+          <DataField>ORG</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FUNDMANAGER">
+          <DataField>FUNDMANAGER</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="DtsGetChart">
+      <Query>
+        <DataSourceName>BBAppFxDB</DataSourceName>
+        <CommandText>select distinct 
+Chart
+from  [dbo].[USR_UA_DESIGNATIONLEVELFUNDINFOMILL]
+order by CHART</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Chart">
+          <DataField>Chart</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="DtsGetSiteNames">
+      <Query>
+        <DataSourceName>BBAppFxDB</DataSourceName>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>USR_USP_UA_RPT_GETSITENAMES</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="NAME">
+          <DataField>NAME</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportParameters>
+    <ReportParameter Name="FINANCIAL_INFO_START_DATE">
+      <DataType>DateTime</DataType>
+      <Prompt>Financial  Info Start Date:</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="FINANCIAL_INFO_END_DATE">
+      <DataType>DateTime</DataType>
+      <Prompt>Financial  Info End Date:</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="AWARDDATE">
+      <DataType>DateTime</DataType>
+      <Prompt>As Of Date:</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="AcademicYear">
+      <DataType>String</DataType>
+      <Prompt>Year</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="InStateTuition">
+      <DataType>String</DataType>
+      <Prompt>In State Tuition:</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="OutOfStateTuition">
+      <DataType>String</DataType>
+      <Prompt>Out Of State Tuition:</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="SemesterTermBegin">
+      <DataType>DateTime</DataType>
+      <Prompt>Beginning Award Date:</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="SemesterTermEnd">
+      <DataType>DateTime</DataType>
+      <Prompt>Ending Award Date:</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="SITENAME">
+      <DataType>String</DataType>
+      <Prompt>Select Site Name(s)</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>DtsGetSiteNames</DataSetName>
+          <ValueField>NAME</ValueField>
+          <LabelField>NAME</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="CHART">
+      <DataType>String</DataType>
+      <Prompt>Select Chart</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>DtsGetChart</DataSetName>
+          <ValueField>Chart</ValueField>
+          <LabelField>Chart</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>5eb5f10f-f407-486b-9567-f110c7759b89</rd:ReportID>
+</Report>

@@ -1,0 +1,1047 @@
+﻿<SQLStoredProcedureSpec
+	xmlns="bb_appfx_sqlstoredprocedure"
+	xmlns:c="bb_appfx_commontypes" 
+	ID="7fef26ab-20b7-4661-9e70-c6a7416a68bf"
+	Name="USR_NEW_STEWARDSHIP_PRINTREPORT"
+	Description="This report identifies the funds eligible to receive a Stewardship Report from the Donor Relations department."
+	Author="msstu6"
+	SPName="USR_NEW_STEWARDSHIP_PRINTREPORT"
+	>
+
+	<CreateProcedureSQL>
+		<![CDATA[
+create procedure dbo.USR_NEW_STEWARDSHIP_PRINTREPORT
+
+(
+--DECLARE
+	@FINANCIAL_INFO_START_DATE datetime,
+	@FINANCIAL_INFO_END_DATE datetime,
+	@AWARDDATE Datetime,
+	@InStateTuition varchar(15),
+	@OutOfStateTuition varchar(15),
+	@AcademicYear varchar(15),
+	@SemesterTermBegin Datetime,
+	@SemesterTermEnd Datetime,
+	@SITENAME varchar(MAX) = '',
+	@CHART varchar(MAX) = ''
+)
+
+	with recompile
+
+as
+begin
+-- SET NOCOUNT ON added to prevent extra result sets from
+-- interfering with SELECT statements.
+SET NOCOUNT ON;
+
+--Begin Testing
+/*
+SET @FINANCIAL_INFO_START_DATE ='10/1/2015'
+SET @FINANCIAL_INFO_END_DATE ='09/30/2016'
+SET @AWARDDATE = '9/30/2016'
+SET @SITENAME = 'Advancement,Advancement Services,Alumni Affairs,Arts and Sciences,Athletics,Commerce and Business,Communication,Continuing Studies,Education,Engineering,Foundation,General University,Greek,Health Science,Honors College,Human Environmental Sciences,Law,Museum,Nursing,Planned Giving,President''''s Cabinet,Social Work,Sponsored Programs,Student Affairs,Tide Pride,University Libraries' 
+SET @SemesterTermBegin ='03/15/2016'
+SET @SemesterTermEnd ='09/15/2016'
+SET @CHART = 'A, C, D, L, N, T'
+*/
+--end Testing 
+
+--STEP1 Create temp tables
+
+IF EXISTS (SELECT * FROM tempdb.dbo.sysobjects WHERE ID = OBJECT_ID(N'tempdb..#stw_data'))
+BEGIN
+	DROP TABLE #stw_data 
+END
+
+BEGIN
+--create table #stw_data
+	CREATE TABLE #stw_data
+	(
+		ID uniqueidentifier,
+		NAME [nvarchar](100) DEFAULT (''),
+		STEWARDSHIP_NAME [nvarchar](max) DEFAULT (''),
+		ESTABLISHED_BY [nvarchar](max) DEFAULT (''),
+		MOA_DATE [nvarchar](max) DEFAULT (''),
+		ENDOWED_DATE [nvarchar](max) DEFAULT (''),
+		RESTRICTION [nvarchar](max) DEFAULT (''),
+		BOOKVALUEEND [money] DEFAULT ((0)),
+		MARKETVALUEEND [money] DEFAULT ((0)),
+		DIVISION [nvarchar](max) DEFAULT (''),
+		TYPE_GROUP [nvarchar](max) DEFAULT (''),
+		RECIPIENT_CONSTITUENT_ID uniqueidentifier,
+		RECIPIENT_CONSTITUENT_SUFFIXID uniqueidentifier,
+		RECIPIENT_NAME_LN [nvarchar](100) DEFAULT (''),
+		RECIPIENT_NAME_FN [nvarchar](100) DEFAULT (''),
+		RECIPIENT_NAME_MI [nvarchar](100) DEFAULT (''),
+		RECIPIENT_NAME_SUFFIX [nvarchar](100) DEFAULT (''),
+		RECIPIENT_AMOUNT [money] DEFAULT ((0)),
+		CITY [nvarchar](max) DEFAULT (''),
+		STATE [nvarchar](max) DEFAULT (''),
+		MAJOR [nvarchar](max) DEFAULT (''),
+		EARNINGS_EXPENDITURES [money] DEFAULT ((0)),
+		--CONTACTS [int]  DEFAULT ((0)),
+    FUNDMANAGER [nvarchar](max) DEFAULT (''),
+		BEGIN_TERM [nvarchar](max) DEFAULT (''),
+		END_TERM [nvarchar](max) DEFAULT (''),
+		CHART [nvarchar](1) DEFAULT (''),
+		MARKETVALUEMSG [nvarchar](max) DEFAULT (''),
+		FUND [nvarchar](max)   DEFAULT (''),
+		FUND_TYPE  [nvarchar](max) DEFAULT (''),
+		ASAS_CODE  [nvarchar](max) DEFAULT (''),
+		SITE nvarchar(30)
+	)
+END
+
+--Create second temp tables
+IF EXISTS (SELECT * FROM tempdb.dbo.sysobjects WHERE ID = OBJECT_ID(N'tempdb..#stw_data_sum'))
+BEGIN
+	DROP TABLE #stw_data_sum;
+END
+
+BEGIN
+	CREATE TABLE  #stw_data_sum
+	(
+		ID uniqueidentifier,
+		NAME [nvarchar](100) DEFAULT (''),
+		STEWARDSHIP_NAME [nvarchar](max) DEFAULT (''),
+		ESTABLISHED_BY [nvarchar](max) DEFAULT (''),
+		MOA_DATE [nvarchar](max) DEFAULT (''),
+		ENDOWED_DATE [nvarchar](max) DEFAULT (''),
+		RESTRICTION [nvarchar](max) DEFAULT (''),
+		BOOKVALUEEND [money] DEFAULT ((0)),
+		MARKETVALUEEND [money] DEFAULT ((0)),
+		DIVISION [nvarchar](max) DEFAULT (''),
+		TYPE_GROUP [nvarchar](max) DEFAULT (''),
+		RECIPIENT_CONSTITUENT_ID uniqueidentifier,
+		RECIPIENT_CONSTITUENT_SUFFIXID uniqueidentifier,
+		RECIPIENT_NAME_LN [nvarchar](100) DEFAULT (''),
+		RECIPIENT_NAME_FN [nvarchar](100) DEFAULT (''),
+		RECIPIENT_NAME_MI [nvarchar](100) DEFAULT (''),
+		RECIPIENT_NAME_SUFFIX [nvarchar](100) DEFAULT (''),
+		RECIPIENT_SUM_AMOUNT [money] DEFAULT ((0)),
+		CITY [nvarchar](max) DEFAULT (''),
+		STATE [nvarchar](max) DEFAULT (''),
+		MAJOR [nvarchar](max) DEFAULT (''),
+		EARNINGS_EXPENDITURES [money] DEFAULT ((0)),
+		--CONTACTS [int] DEFAULT ((0)),
+    FUNDMANAGER [nvarchar](max) DEFAULT (''),
+		BEGIN_TERM [nvarchar](max) DEFAULT (''),
+		END_TERM [nvarchar](max) DEFAULT (''),
+		CHART [nvarchar](1) DEFAULT (''),
+		MARKETVALUEMSG [nvarchar](max) DEFAULT (''),
+		FUND [nvarchar](max) DEFAULT (''),
+		FUND_TYPE [nvarchar](max) DEFAULT (''),
+		ASAS_CODE [nvarchar](max) DEFAULT (''),
+		SITE nvarchar(30)
+	)
+END
+
+--Create temp hold tables used to remove duplicates
+IF EXISTS (SELECT * FROM tempdb.dbo.sysobjects WHERE ID = OBJECT_ID(N'tempdb..#stw_data_holdkey'))
+BEGIN
+	DROP TABLE #stw_data_holdkey;
+END
+
+BEGIN
+	CREATE TABLE  #stw_data_holdkey
+	(
+	NAME [nvarchar](100) DEFAULT (''),
+	RECIPIENT_NAME_LN [nvarchar](100) DEFAULT (''),
+	RECIPIENT_NAME_FN [nvarchar](100) DEFAULT (''),
+	RECIPIENT_COUNT int DEFAULT (0)
+	)
+END
+
+IF EXISTS (SELECT * FROM tempdb.dbo.sysobjects WHERE ID = OBJECT_ID(N'tempdb..#stw_data_holddups'))
+BEGIN
+	DROP TABLE #stw_data_holddups;
+END
+
+BEGIN
+	CREATE TABLE  #stw_data_holddups
+	(
+		ID uniqueidentifier,
+		NAME [nvarchar](100) DEFAULT (''),
+		STEWARDSHIP_NAME [nvarchar](max) DEFAULT (''),
+		ESTABLISHED_BY [nvarchar](max) DEFAULT (''),
+		MOA_DATE [nvarchar](max) DEFAULT (''),
+		ENDOWED_DATE [nvarchar](max) DEFAULT (''),
+		RESTRICTION [nvarchar](max) DEFAULT (''),
+		BOOKVALUEEND [money] DEFAULT ((0)),
+		MARKETVALUEEND [money] DEFAULT ((0)),
+		DIVISION [nvarchar](max) DEFAULT (''),
+		TYPE_GROUP [nvarchar](max) DEFAULT (''),
+		RECIPIENT_CONSTITUENT_ID uniqueidentifier,
+		RECIPIENT_CONSTITUENT_SUFFIXID uniqueidentifier,
+		RECIPIENT_NAME_LN [nvarchar](100) DEFAULT (''),
+		RECIPIENT_NAME_FN [nvarchar](100) DEFAULT (''),
+		RECIPIENT_NAME_MI [nvarchar](100) DEFAULT (''),
+		RECIPIENT_NAME_SUFFIX [nvarchar](100) DEFAULT (''),
+		RECIPIENT_SUM_AMOUNT [money] DEFAULT ((0)),
+		CITY [nvarchar](max) DEFAULT (''),
+		STATE [nvarchar](max) DEFAULT (''),
+		MAJOR [nvarchar](max) DEFAULT (''),
+		EARNINGS_EXPENDITURES [money] DEFAULT ((0)),
+		--CONTACTS [int] DEFAULT ((0)),
+    FUNDMANAGER [nvarchar](max) DEFAULT (''),
+		BEGIN_TERM [nvarchar](max) DEFAULT (''),
+		END_TERM [nvarchar](max) DEFAULT (''),
+		CHART [nvarchar](1) DEFAULT (''),
+		MARKETVALUEMSG [nvarchar](max)   DEFAULT (''),
+		FUND [nvarchar](max) DEFAULT (''),
+		FUND_TYPE [nvarchar](max) DEFAULT (''),
+		ASAS_CODE [nvarchar](max) DEFAULT (''),
+		SITE nvarchar(30)
+	)
+END
+
+--step 2 Populate the first temp table 
+insert into  #stw_data
+(
+	ID,
+	NAME,
+	STEWARDSHIP_NAME,
+	ESTABLISHED_BY,
+	MOA_DATE,
+	ENDOWED_DATE,
+	RESTRICTION,
+	BOOKVALUEEND,
+	MARKETVALUEEND,
+	DIVISION,
+  FUNDMANAGER,
+	TYPE_GROUP,
+	RECIPIENT_CONSTITUENT_ID,
+	CITY,
+	STATE,
+	MAJOR,
+	SITE
+)
+-- ETL UPDATE
+select distinct
+	dl.ID,
+	left(dl.NAME,5) as NAME,
+	replace(replace(LTRIM(dle.STEWARDSHIPNAME), CHAR(13), ''), CHAR(10), '') as STEWARDSHIP_NAME,
+	replace(replace((SUBSTRING(LTRIM(dle.ESTABLISHEDBY),12, 25000)), CHAR(13), ''), CHAR(10), '') as ESTABLISHED_BY,
+	DATEPART(YYYY, dle.MOADATE) as MOA_DATE,
+	DATEPART(YYYY, dle.RESOLUTIONDATE) as ENDOWED_DATE,
+	replace(replace(LTRIM(dle.FUNDRESTRICTION), CHAR(13), ''), CHAR(10), '') as RESTRICTION,
+	replace(replace(bv.BOOKVALUEEND, CHAR(13), ''), CHAR(10), '') as BOOKVALUEEND,
+	mv.MARKETVALUEEND,
+	replace(replace(LTRIM(dle.PREFERREDSCHOOL), CHAR(13), ''), CHAR(10), '') as DIVISION,
+  (SELECT NAME FROM CONSTITUENT WHERE ID=dle.FUNDMANAGERID) AS FUNDMANAGER,
+	case when dle.CONSTITUENTTYPE like '%Scholarship%' then 'Scholarship' else 'Not Scholarship' end as TYPE_GROUP,
+	rec.CONSTITUENTID as RECIPIENT_CONSTITUENT_ID,
+	[dbo].[USR_UFN_UA_INITCAP](education.CITY) as EDUCATIONCITY,
+	education.STATEABBR,
+	[dbo].[USR_UFN_UA_INITCAP](education.MAJOR) as INITCAP,
+	site.NAME
+from
+	DESIGNATIONLEVEL as dl
+  inner join USR_UA_DESIGNATIONLEVEL_EXT AS dle on dl.ID = dle.DESIGNATIONLEVELID
+	left join DESIGNATIONLEVELFINANCIALINFO as bv on bv.DESIGNATIONLEVELID = dl.ID
+			AND BV.ENDDATE in
+			(
+				select top 1 BVD1.ENDDATE
+				from DBO.DESIGNATIONLEVELFINANCIALINFO AS BVD1
+				where  BV.DESIGNATIONLEVELID = BVD1.DESIGNATIONLEVELID
+				AND BVD1.ENDDATE <= @AWARDDATE
+				order by BVD1.ENDDATE desc
+			)
+	left join DESIGNATIONLEVELFINANCIALINFO as mv on mv.DESIGNATIONLEVELID = dl.ID
+			and mv.ENDDATE =
+			(
+				select top 1 BVD2.ENDDATE
+				from DBO.DESIGNATIONLEVELFINANCIALINFO AS BVD2
+				where MV.DESIGNATIONLEVELID = BVD2.DESIGNATIONLEVELID
+				AND BVD2.ENDDATE <= @AWARDDATE
+				order by BVD2.ENDDATE desc
+			)
+	left join DESIGNATIONLEVELRECIPIENT as rec on rec.DESIGNATIONLEVELID = dl.ID and rec.DATE between @SemesterTermBegin and @SemesterTermEnd
+	left join USR_UA_DESIGNATIONLEVELRECIPIENT_EXT as education on education.ID = rec.ID
+	left join DESIGNATIONLEVELFINANCIALINFO as earnings on earnings.DESIGNATIONLEVELID = dl.ID
+		and earnings.STARTDATE between @FINANCIAL_INFO_START_DATE and @FINANCIAL_INFO_END_DATE
+		and earnings.ENDDATE between @FINANCIAL_INFO_START_DATE and @FINANCIAL_INFO_END_DATE
+	left join USR_UA_DESIGNATIONLEVELFINANCIALINFO_EXT as earningsext on earningsext.ID = earnings.ID
+	left join SITE as site on site.ID = dl.SITEID
+where
+	dle.DESIGNATIONSTATUS like '%Stewarded%'
+	and (@SITENAME = 'All sites' or site.NAME in (select Data from USR_UFN_UA_SPLIT (@SITENAME, ',')))
+
+--update #stw_data tmp table to get the receipeint name in proper format - Req by steven on 8/23/2017 Ticket#292047 
+update STD
+	set
+		STD.RECIPIENT_NAME_LN = CONS.KEYNAME,
+		STD.RECIPIENT_NAME_FN = CONS.FIRSTNAME,
+		STD.RECIPIENT_NAME_MI = CASE WHEN (LEN(CONS.MIDDLENAME) >= 1) THEN ((UPPER(SUBSTRING(CONS.MIDDLENAME, 1,1))) + '.') ELSE NULL END,
+		STD.RECIPIENT_CONSTITUENT_SUFFIXID = CONS.SUFFIXCODEID
+	FROM
+		#stw_data AS STD
+		INNER JOIN dbo.CONSTITUENT as CONS on STD.RECIPIENT_CONSTITUENT_ID = CONS.ID
+
+--update #stw_data tmp table to get the receipeint Suffix code  in proper format - Req by steven on 8/23/2017 Ticket#292047 
+update STD
+set STD.RECIPIENT_NAME_SUFFIX = SUFF.DESCRIPTION
+FROM
+	#stw_data AS STD
+	INNER JOIN dbo.SUFFIXCODE as SUFF on STD.RECIPIENT_CONSTITUENT_SUFFIXID = SUFF.ID
+
+--Steps to remove duplicate recipients
+--STEP1:  SELECT THE DUPLICATE KEY VALUES INTO A HOLDING TABLE.
+INSERT INTO #stw_data_holdkey
+(
+	NAME,
+	RECIPIENT_NAME_LN,
+	RECIPIENT_NAME_FN,
+	RECIPIENT_COUNT
+)
+select
+	NAME,
+	RECIPIENT_NAME_LN,
+	RECIPIENT_NAME_FN,
+	count(*)
+from #stw_data
+where RECIPIENT_NAME_LN is not NULL AND  RECIPIENT_NAME_FN is not NULL
+GROUP BY NAME,RECIPIENT_NAME_LN, RECIPIENT_NAME_FN
+HAVING count(*) > 1
+
+--STEP2 - SELECT THE DUPLICATE ROWS INTO A HOLDING TABLE, ELIMINATING DUPLICATES IN THE PROCESS
+INSERT INTO #stw_data_holddups
+(
+	ID,
+	NAME,
+	STEWARDSHIP_NAME,
+	ESTABLISHED_BY,
+	MOA_DATE,
+	ENDOWED_DATE,
+	RESTRICTION,
+	BOOKVALUEEND,
+	MARKETVALUEEND,
+	DIVISION,
+	TYPE_GROUP,
+	RECIPIENT_CONSTITUENT_ID,
+	RECIPIENT_CONSTITUENT_SUFFIXID,
+	RECIPIENT_NAME_LN,
+	RECIPIENT_NAME_FN,
+	RECIPIENT_NAME_MI,
+	RECIPIENT_NAME_SUFFIX,
+	CITY,
+	STATE,
+	MAJOR,
+	SITE
+)
+SELECT DISTINCT
+	#stw_data.ID,
+	#stw_data.NAME,
+	#stw_data.STEWARDSHIP_NAME,
+	#stw_data.ESTABLISHED_BY,
+	#stw_data.MOA_DATE,
+	#stw_data.ENDOWED_DATE,
+	#stw_data.RESTRICTION,
+	#stw_data.BOOKVALUEEND,
+	#stw_data.MARKETVALUEEND,
+	#stw_data.DIVISION,
+	#stw_data.TYPE_GROUP,
+	#stw_data.RECIPIENT_CONSTITUENT_ID ,
+	#stw_data.RECIPIENT_CONSTITUENT_SUFFIXID,
+	#stw_data.RECIPIENT_NAME_LN,
+	#stw_data.RECIPIENT_NAME_FN,
+	#stw_data.RECIPIENT_NAME_MI,
+	#stw_data.RECIPIENT_NAME_SUFFIX,
+	#stw_data.CITY,
+	#stw_data.STATE,
+	#stw_data.MAJOR,
+	#stw_data.SITE
+FROM
+	#stw_data, #stw_data_holdkey
+WHERE
+	#stw_data.NAME = #stw_data_holdkey.NAME
+	AND #stw_data.RECIPIENT_NAME_LN = #stw_data_holdkey.RECIPIENT_NAME_LN
+	AND #stw_data.RECIPIENT_NAME_FN = #stw_data_holdkey.RECIPIENT_NAME_FN
+
+alter table #stw_data_holddups add AUTOID int IDENTITY(1,1)
+
+--STEP 3 DELETE DUPLICATE ROWS FROM THE HOLDING TABLE
+delete #stw_data_holddups
+where AUTOID not in
+(
+	select MIN(AUTOID)
+	from #stw_data_holddups
+	group by NAME, RECIPIENT_NAME_LN, RECIPIENT_NAME_FN
+)
+
+--STEP 4 DELETE THE DUPLICATE ROWS FROM THE ORIGINAL TABLE 
+DELETE #stw_data
+FROM #stw_data, #stw_data_holdkey
+WHERE
+	#stw_data.NAME = #stw_data_holdkey.NAME
+	AND #stw_data.RECIPIENT_NAME_LN = #stw_data_holdkey.RECIPIENT_NAME_LN
+	AND #stw_data.RECIPIENT_NAME_FN = #stw_data_holdkey.RECIPIENT_NAME_FN
+	AND #stw_data.RECIPIENT_NAME_LN IS NOT null
+	AND #stw_data.RECIPIENT_NAME_FN IS NOT null
+
+--STEP 5 Put the unique rows back in the original table
+INSERT INTO #stw_data
+(
+	ID,
+	NAME,
+	STEWARDSHIP_NAME,
+	ESTABLISHED_BY,
+	MOA_DATE,
+	ENDOWED_DATE,
+	RESTRICTION,
+	BOOKVALUEEND,
+	MARKETVALUEEND,
+	DIVISION,
+	TYPE_GROUP,
+	RECIPIENT_CONSTITUENT_ID,
+	RECIPIENT_CONSTITUENT_SUFFIXID,
+	RECIPIENT_NAME_LN,
+	RECIPIENT_NAME_FN,
+	RECIPIENT_NAME_MI,
+	RECIPIENT_NAME_SUFFIX,
+	CITY,
+	STATE,
+	MAJOR,
+	SITE
+)
+SELECT
+	ID,
+	NAME,
+	STEWARDSHIP_NAME,
+	ESTABLISHED_BY,
+	MOA_DATE,
+	ENDOWED_DATE,
+	RESTRICTION,
+	BOOKVALUEEND,
+	MARKETVALUEEND,
+	DIVISION,
+	TYPE_GROUP,
+	RECIPIENT_CONSTITUENT_ID,
+	RECIPIENT_CONSTITUENT_SUFFIXID,
+	RECIPIENT_NAME_LN,
+	RECIPIENT_NAME_FN,
+	RECIPIENT_NAME_MI,
+	RECIPIENT_NAME_SUFFIX,
+	CITY,
+	STATE,
+	MAJOR,
+	SITE
+FROM #stw_data_holddups
+
+--replace 'And' with 'and'  in MAJOR column
+UPDATE #stw_data
+	set MAJOR = REPLACE( MAJOR, 'And', 'and')
+
+--Added logic to update the the BEGIN_TERM -VD 07/2016
+declare @SemesterTermBeginYEAR varchar(4)
+declare @SemesterTermBeginMONTH varchar(2)
+
+SET @SemesterTermBeginYEAR = DATEPART(yyyy,@SemesterTermBegin)
+set @SemesterTermBeginMONTH = DATEPART(mm,@SemesterTermBegin)
+set @SemesterTermBeginMONTH = REPLACE(LTRIM(REPLACE(@SemesterTermBeginMONTH, '0', ' ')), ' ', '0')
+
+--update begin term and end term values
+UPDATE #stw_data
+	SET #stw_data.BEGIN_TERM =
+	(
+		case
+			when @SemesterTermBeginMONTH = '5' or @SemesterTermBeginMONTH = '6' OR @SemesterTermBeginMONTH = '7' then 'summer' + ' '+ @SemesterTermBeginYEAR
+			when @SemesterTermBeginMONTH = '1' or @SemesterTermBeginMONTH = '2' OR @SemesterTermBeginMONTH = '3' OR @SemesterTermBeginMONTH = '4' then 'spring' + ' '+ @SemesterTermBeginYEAR
+			when @SemesterTermBeginMONTH = '8' or @SemesterTermBeginMONTH = '9' OR @SemesterTermBeginMONTH = '10' OR @SemesterTermBeginMONTH = '11' OR @SemesterTermBeginMONTH = '12'then 'fall' + ' '+ @SemesterTermBeginYEAR
+		END
+	)
+
+--Added logic to update the the END_TERM -VD 07/2016
+declare @SemesterTermEndYEAR varchar(4)
+declare @SemesterTermEndMONTH varchar(2)
+
+SET @SemesterTermEndYEAR = DATEPART(yyyy,@SemesterTermEnd)
+set @SemesterTermEndMONTH = DATEPART(mm,@SemesterTermEnd)
+set @SemesterTermEndMONTH = REPLACE(LTRIM(REPLACE(@SemesterTermEndMONTH, '0', ' ')), ' ', '0')
+
+UPDATE #stw_data
+	SET #stw_data.END_TERM =
+	(
+		case
+			when @SemesterTermEndMONTH = '5' or @SemesterTermEndMONTH = '6' OR @SemesterTermEndMONTH = '7' then 'summer' + ' '+ @SemesterTermEndYEAR
+			when @SemesterTermEndMONTH = '1' or @SemesterTermEndMONTH = '2' OR @SemesterTermEndMONTH = '3' OR @SemesterTermEndMONTH = '4' then 'spring' + ' '+ @SemesterTermEndYEAR
+			when @SemesterTermEndMONTH = '8' or @SemesterTermEndMONTH = '9' OR @SemesterTermEndMONTH = '10' OR @SemesterTermEndMONTH = '11' OR @SemesterTermEndMONTH = '12'then 'fall' + ' '+ @SemesterTermEndYEAR
+		END
+	)
+
+/*Add logic to update COUNT(CONTACTS.ID) AS CONTACTS -VD 10/10/2016
+update STD
+	set STD.CONTACTS = CONTACT.COUNTID
+	FROM #stw_data AS STD
+	INNER JOIN
+		(
+			SELECT COUNT(ID) AS COUNTID, DESIGNATIONLEVELID AS DESLVLID
+			FROM [dbo].[DESIGNATIONLEVELSTEWARDSHIPRECIPIENTS] AS DESLVVLSTERCP
+			WHERE DESLVVLSTERCP.TYPECODEID = 'F0886DDE-B59A-41AB-91B6-2ECE92685110'
+			GROUP BY DESLVVLSTERCP.DESIGNATIONLEVELID
+		) AS CONTACT on STD.ID = CONTACT.DESLVLID
+	WHERE STD.ID IS NOT NULL
+*/
+
+--Add logic to  update SUM(RECIPIENT_AMOUNT)-VD 12/2/2016
+update STD
+	set STD.RECIPIENT_AMOUNT = RECIPIENT.RECIPIENTAMOUNT
+	FROM #stw_data AS STD
+	INNER JOIN 
+		(
+			SELECT
+				SUM(DESLVLREC.AMOUNT) AS RECIPIENTAMOUNT,
+				DESIGNATIONLEVELID AS DESLVLID
+			FROM [dbo].[DESIGNATIONLEVELRECIPIENT] AS DESLVLREC
+			WHERE DESLVLREC.DATE BETWEEN @SemesterTermBegin AND @SemesterTermEnd
+			GROUP BY DESLVLREC.DESIGNATIONLEVELID
+		) AS RECIPIENT on STD.ID = RECIPIENT.DESLVLID
+	WHERE STD.ID IS NOT NULL
+
+--add logic to get SUM(EARNINGS_EXPENDITURES) - VD 03/29/2017
+update STD
+	set STD.EARNINGS_EXPENDITURES = EXPENDITURES.EXPENDITURESAMOUNT
+	FROM #stw_data AS STD
+	INNER JOIN 
+		(
+			SELECT
+				SUM(DESLVLEXP.EXPENDITURES) AS EXPENDITURESAMOUNT,
+				--DESLVLEXP.ID AS DESLVLID,
+				EARNINGS.DESIGNATIONLEVELID AS DESLVLID
+			FROM [dbo].[USR_UA_DESIGNATIONLEVELFINANCIALINFO_EXT] AS DESLVLEXP
+			INNER JOIN DBO.DESIGNATIONLEVELFINANCIALINFO AS EARNINGS ON EARNINGS.ID = DESLVLEXP.ID
+			WHERE
+				EARNINGS.STARTDATE BETWEEN @FINANCIAL_INFO_START_DATE AND @FINANCIAL_INFO_END_DATE
+				AND EARNINGS.ENDDATE BETWEEN @FINANCIAL_INFO_START_DATE AND @FINANCIAL_INFO_END_DATE
+			GROUP BY EARNINGS.DESIGNATIONLEVELID
+		) AS EXPENDITURES on STD.ID = EXPENDITURES.DESLVLID
+	WHERE STD.ID IS NOT NULL 
+
+--Add logic to update tmp table with an appropriate message if market value is less than book value -VD 11/04/2016
+update STD
+	set STD.MARKETVALUEMSG = 'The negative fair market value in relation to the book value reflects overall market performance from the time the endowment entered the investment pool.'
+	FROM #stw_data AS STD INNER JOIN [dbo].[USR_UA_DESIGNATIONLEVELFUNDINFOMILL] AS DESMILLFUND on STD.ID = DESMILLFUND.DESIGNATIONLEVELID
+	WHERE STD.ID IS NOT NULL
+	and STD.MARKETVALUEEND < STD.BOOKVALUEEND
+
+--Add logic to  update tmp table with chart and fund type -VD 10/14/2016
+update STD
+	set
+		STD.CHART = DESMILLFUND.CHART,
+		STD.FUND_TYPE = DESMILLFUND.FUNDTYPE,
+		STD.FUND = stuff((select ', ' + dlmill.FUND from USR_UA_DESIGNATIONLEVELFUNDINFOMILL as dlmill where dlmill.DESIGNATIONLEVELID = DESMILLFUND.designationlevelid and dlmill.FUNDTYPE = 'Annual' for xml path('')), 1, 1, ''),
+		STD.ASAS_CODE = nullif(stuff((select ', ' + dlmill.ASASCODE from USR_UA_DESIGNATIONLEVELFUNDINFOMILL as dlmill where dlmill.DESIGNATIONLEVELID = DESMILLFUND.designationlevelid and dlmill.FUNDTYPE = 'Annual' for xml path('')), 1, 1, ''), '')
+	FROM
+		#stw_data AS STD
+		INNER JOIN [dbo].[USR_UA_DESIGNATIONLEVELFUNDINFOMILL] AS DESMILLFUND on STD.ID = DESMILLFUND.DESIGNATIONLEVELID AND DESMILLFUND.FUNDTYPE = 'Annual'
+	WHERE STD.ID IS NOT NULL
+
+update STD
+	set
+		STD.CHART = DESMILLFUND.CHART,
+		STD.FUND_TYPE = DESMILLFUND.FUNDTYPE,
+		STD.FUND = stuff((select ', ' + dlmill.FUND from USR_UA_DESIGNATIONLEVELFUNDINFOMILL as dlmill where dlmill.DESIGNATIONLEVELID = DESMILLFUND.designationlevelid and dlmill.FUNDTYPE = 'Quasi Income' for xml path('')), 1, 1, ''),
+		STD.ASAS_CODE = nullif(stuff((select ', ' + dlmill.ASASCODE from USR_UA_DESIGNATIONLEVELFUNDINFOMILL as dlmill where dlmill.DESIGNATIONLEVELID = DESMILLFUND.designationlevelid and dlmill.FUNDTYPE = 'Quasi Income' for xml path('')), 1, 1, ''), '')
+	FROM
+		#stw_data AS STD
+		INNER JOIN [dbo].[USR_UA_DESIGNATIONLEVELFUNDINFOMILL] AS DESMILLFUND on STD.ID = DESMILLFUND.DESIGNATIONLEVELID AND DESMILLFUND.FUNDTYPE = 'Quasi Income'
+	WHERE STD.ID IS NOT NULL
+
+update STD
+	set
+		STD.CHART = DESMILLFUND.CHART,
+		STD.FUND_TYPE = DESMILLFUND.FUNDTYPE,
+		STD.FUND = stuff((select ', ' + dlmill.FUND from USR_UA_DESIGNATIONLEVELFUNDINFOMILL as dlmill where dlmill.DESIGNATIONLEVELID = DESMILLFUND.designationlevelid and dlmill.FUNDTYPE = 'Income' for xml path('')), 1, 1, ''),
+		STD.ASAS_CODE = nullif(stuff((select ', ' + dlmill.ASASCODE from USR_UA_DESIGNATIONLEVELFUNDINFOMILL as dlmill where dlmill.DESIGNATIONLEVELID = DESMILLFUND.designationlevelid and dlmill.FUNDTYPE = 'Income' for xml path('')), 1, 1, ''), '')
+	FROM
+		#stw_data AS STD
+		INNER JOIN [dbo].[USR_UA_DESIGNATIONLEVELFUNDINFOMILL] AS DESMILLFUND on STD.ID = DESMILLFUND.DESIGNATIONLEVELID AND DESMILLFUND.FUNDTYPE = 'Income'
+	WHERE STD.ID IS NOT NULL
+
+--UPDATE STATEABBR WITH 'COUNTRY' FOR THOSE STATEABBR THAT DO NOT HAVE ANY VALUES. THIS IS HAPPENING FOR NON USA ADDRESSES
+-- STEVE WILL UPDATE IT WITH APPROPRIATE COUNTRY NAME
+UPDATE #stw_data
+	SET #stw_data.STATE = 'COUNTRY'
+	WHERE #stw_data.STATE = ''
+
+--update EARNINGS_EXPENDITURES to 0 if it is null - vd 12/1/2016
+UPDATE #stw_data
+	SET #stw_data.EARNINGS_EXPENDITURES = 0
+	WHERE #stw_data.EARNINGS_EXPENDITURES is null
+
+--update RECIPIENT_AMOUNTto 0 if it is null - vd 12/1/2016
+UPDATE #stw_data
+	SET #stw_data.RECIPIENT_AMOUNT = 0
+	WHERE #stw_data.RECIPIENT_AMOUNT is null
+
+--update BOOKVALUEEND to 0 if it is null - vd 12/1/2016
+UPDATE #stw_data
+	SET #stw_data.BOOKVALUEEND = 0
+	WHERE #stw_data.BOOKVALUEEND is null
+
+--update MARKETVALUEEND to 0 if it is null - vd 12/1/2016
+UPDATE #stw_data
+	SET #stw_data.MARKETVALUEEND = 0
+	WHERE #stw_data.MARKETVALUEEND is null
+
+--Populate the second temp table
+insert into #stw_data_sum
+(
+	ID,
+	NAME,
+	STEWARDSHIP_NAME,
+	ESTABLISHED_BY,
+	MOA_DATE,
+	ENDOWED_DATE,
+	RESTRICTION,
+	BOOKVALUEEND,
+	MARKETVALUEEND,
+	DIVISION,
+	TYPE_GROUP,
+	RECIPIENT_CONSTITUENT_ID,
+	RECIPIENT_CONSTITUENT_SUFFIXID,
+	RECIPIENT_NAME_LN,
+	RECIPIENT_NAME_FN,
+	RECIPIENT_NAME_MI,
+	RECIPIENT_NAME_SUFFIX,
+	RECIPIENT_SUM_AMOUNT,
+	CITY,
+	STATE,
+	MAJOR,
+	EARNINGS_EXPENDITURES,
+--	CONTACTS,
+  FUNDMANAGER,
+	BEGIN_TERM,
+	END_TERM,
+	CHART,
+	MARKETVALUEMSG,
+	FUND,
+	FUND_TYPE,
+	ASAS_CODE,
+	SITE
+)
+select
+	ID,
+	NAME,
+	STEWARDSHIP_NAME,
+	ESTABLISHED_BY,
+	MOA_DATE,
+	ENDOWED_DATE,
+	RESTRICTION,
+	BOOKVALUEEND,
+	MARKETVALUEEND,
+	DIVISION,
+	TYPE_GROUP,
+	RECIPIENT_CONSTITUENT_ID,
+	RECIPIENT_CONSTITUENT_SUFFIXID,
+	RECIPIENT_NAME_LN,
+	RECIPIENT_NAME_FN,
+	RECIPIENT_NAME_MI,
+	RECIPIENT_NAME_SUFFIX,
+	RECIPIENT_AMOUNT,
+	CITY,
+	STATE,
+	MAJOR,
+	EARNINGS_EXPENDITURES,
+	--CONTACTS,
+  FUNDMANAGER,
+	BEGIN_TERM,
+	END_TERM,
+	CHART,
+	MARKETVALUEMSG,
+	FUND,
+	FUND_TYPE,
+	nullif(nullif(ASAS_CODE, ''), ' '),
+	SITE
+from #stw_data
+GROUP BY
+	ID, NAME, STEWARDSHIP_NAME, ESTABLISHED_BY, MOA_DATE, ENDOWED_DATE, RESTRICTION, BOOKVALUEEND, MARKETVALUEEND, DIVISION, TYPE_GROUP,
+	--CONTACTS, 
+  FUNDMANAGER,
+  EARNINGS_EXPENDITURES, RECIPIENT_CONSTITUENT_ID, RECIPIENT_CONSTITUENT_SUFFIXID, RECIPIENT_NAME_LN, RECIPIENT_NAME_FN,
+	RECIPIENT_NAME_MI,RECIPIENT_NAME_SUFFIX, RECIPIENT_AMOUNT, CITY, STATE, MAJOR, BEGIN_TERM, END_TERM, CHART, MARKETVALUEMSG, FUND, FUND_TYPE, ASAS_CODE, SITE
+
+select DISTINCT
+	stw.NAME as PURPOSE_NAME,
+	stw.ID,
+	STEWARDSHIP_NAME,
+	c.ID as STEWARDSHIP_CONTACT_ID,
+	c.lookupid as STEWARDSHIP_LOOKUPID,
+	case when c.FIRSTNAME is not null and c.FIRSTNAME != '' then CONCAT(c.KEYNAME, ', ', c.FIRSTNAME) else c.KEYNAME end as STEWARDSHIP_CONTACT_NAME, -- Added on 8/8/2018 at the request of Hannah Blanchard
+	[dbo].[UFN_NAMEFORMAT_FROMID]('14FA8123-24D5-41AF-A3F2-9BF0CAA3FFE2',c.id) as STEWARDSHIP_CONTACT_FORMAL_NAME,
+	ESTABLISHED_BY,
+	MOA_DATE,
+	ENDOWED_DATE,
+	RESTRICTION,
+	BOOKVALUEEND,
+	MARKETVALUEEND,
+	DIVISION,
+	TYPE_GROUP,
+--	stw.CONTACTS,
+  FUNDMANAGER,
+	EARNINGS_EXPENDITURES,
+	RECIPIENT_AMOUNT,
+	stw.RECIPIENT_CONSTITUENT_ID,
+	LTRIM
+	(
+		stuff
+		(
+			(
+				SELECT '; ' + CONCAT
+					(
+						CASE WHEN DS2.RECIPIENT_NAME_FN IS NULL THEN '' ELSE DS2.RECIPIENT_NAME_FN END,
+						CASE WHEN DS2.RECIPIENT_NAME_MI IS NULL THEN '' ELSE CONCAT(' ', DS2.RECIPIENT_NAME_MI) END,
+						CASE WHEN DS2.RECIPIENT_NAME_LN IS NULL THEN '' ELSE CONCAT(' ', DS2.RECIPIENT_NAME_LN) END,
+						CASE WHEN DS2.RECIPIENT_NAME_SUFFIX = '' THEN '' ELSE CONCAT(' ',DS2.RECIPIENT_NAME_SUFFIX) END
+					)
+					+ CASE WHEN DS2.CITY IS NULL THEN '' ELSE CONCAT(', ', DS2.CITY) END
+					+ CASE WHEN DS2.STATE IS NULL THEN '' ELSE CONCAT(', ', DS2.STATE) END
+					+ CASE WHEN DS2.MAJOR IS NULL THEN '' ELSE CONCAT(': ', rtrim(DS2.MAJOR)) END
+				from dbo.#stw_data_sum as DS2
+				WHERE
+					stw.id = DS2.id
+				order by
+					DS2.NAME,
+					DS2.RECIPIENT_NAME_LN,
+					DS2.RECIPIENT_NAME_FN  
+				FOR XML PATH(''), TYPE
+			).value('.', 'varchar(max)')   ,1,1,''
+		)
+	) as RECIPIENT_NAMECITYSTATEMAJOR,
+	BEGIN_TERM, 
+	END_TERM, 
+	CHART, 
+	MARKETVALUEMSG, 
+	LTRIM(stuff ( ( SELECT DISTINCT '; ' + FUND_TYPE
+		from #stw_data a
+		WHERE stw.id = a.id
+		FOR XML PATH(''), TYPE).value('.', 'varchar(max)')   ,1,1,'')) as FUND_TYPE,
+	LTRIM(stuff ( ( SELECT DISTINCT '; ' + FUND
+		from #stw_data a
+		WHERE stw.id = a.id
+		FOR XML PATH(''), TYPE).value('.', 'varchar(max)')   ,1,1,'')) as FUND,
+	LTRIM(stuff ( ( SELECT DISTINCT '; ' + ASAS_CODE
+		from #stw_data a
+		WHERE stw.id = a.id
+		FOR XML PATH(''), TYPE).value('.', 'varchar(max)')   ,1,1,'')) as ASAS_CODE,
+	SITE
+into #Holding
+from
+	#stw_data as stw
+	left join DESIGNATIONLEVELSTEWARDSHIPRECIPIENTS as dlsr on dlsr.DESIGNATIONLEVELID = stw.ID and dlsr.TYPECODEID = 'F0886DDE-B59A-41AB-91B6-2ECE92685110'
+	left join constituent as c on c.id = dlsr.constituentid
+where CHART in (SELECT Data FROM [dbo].[USR_UFN_UA_SPLIT] (@CHART, ','))
+ORDER BY STEWARDSHIP_CONTACT_NAME ASC
+
+alter table #Holding add STUDENT nvarchar(max)
+alter table #Holding add MAJOR nvarchar(max)
+alter table #Holding add HOMETOWN nvarchar(max)
+alter table #Holding add SPORT nvarchar(max)
+
+update h
+set h.STUDENT =
+	CASE WHEN h.RECIPIENT_NAMECITYSTATEMAJOR like '%;%' or h.RECIPIENT_NAMECITYSTATEMAJOR is null THEN NULL
+	ELSE CONCAT
+		(
+			sds.RECIPIENT_NAME_FN,' ',
+			CASE WHEN sds.RECIPIENT_NAME_MI IS NULL THEN '' ELSE CONCAT(sds.RECIPIENT_NAME_MI, ' ') END,
+			sds.RECIPIENT_NAME_LN,
+			CASE WHEN sds.RECIPIENT_NAME_SUFFIX = '' THEN '' ELSE (CONCAT(' ', sds.RECIPIENT_NAME_SUFFIX)) END
+		)
+	END
+from #Holding as h
+inner join #stw_data_sum as sds on sds.ID = h.ID and sds.RECIPIENT_CONSTITUENT_ID = h.RECIPIENT_CONSTITUENT_ID
+
+update h
+set h.MAJOR =
+	CASE WHEN h.RECIPIENT_NAMECITYSTATEMAJOR like '%;%' or h.RECIPIENT_NAMECITYSTATEMAJOR is null THEN NULL
+	ELSE ltrim(rtrim(lower(sd.MAJOR)))
+	END
+from #Holding as h
+inner join #stw_data as sd on sd.ID = h.ID and sd.RECIPIENT_CONSTITUENT_ID = h.RECIPIENT_CONSTITUENT_ID
+
+update h
+set h.MAJOR = 'Latin'
+from #Holding as h
+where h.MAJOR = 'latin'
+
+update h
+set h.MAJOR = 'German'
+from #Holding as h
+where h.MAJOR = 'german'
+
+update h
+set h.MAJOR = 'English'
+from #Holding as h
+where h.MAJOR = 'english'
+
+update h
+set h.MAJOR = 'French'
+from #Holding as h
+where h.MAJOR = 'french'
+
+update h
+set h.MAJOR = 'African-American'
+from #Holding as h
+where h.MAJOR = 'african-american'
+
+update h
+set h.MAJOR = 'American'
+from #Holding as h
+where h.MAJOR = 'american'
+
+update h
+set h.MAJOR = 'Asian'
+from #Holding as h
+where h.MAJOR = 'asian'
+
+update h
+set h.MAJOR = 'Blount Undergraduate Initiative'
+from #Holding as h
+where h.MAJOR = 'blount undergraduate initiative'
+
+update h
+set h.MAJOR = 'Computer Based Honors Program'
+from #Holding as h
+where h.MAJOR = 'computer based honors program'
+
+update h
+set h.MAJOR = 'Collaborative Education Program'
+from #Holding as h
+where h.MAJOR = 'collaborative education program'
+
+update h
+set h.MAJOR = 'Chinese'
+from #Holding as h
+where h.MAJOR = 'chinese'
+
+update h
+set h.MAJOR = 'French-German'
+from #Holding as h
+where h.MAJOR = 'french-german'
+
+update h
+set h.MAJOR = 'French-Spanish'
+from #Holding as h
+where h.MAJOR = 'french-spanish'
+
+update h
+set h.MAJOR = 'N-12'
+from #Holding as h
+where h.MAJOR = 'n-12'
+
+update h
+set h.MAJOR = 'Spanish'
+from #Holding as h
+where h.MAJOR = 'spanish'
+
+update h
+set h.MAJOR = 'New College'
+from #Holding as h
+where h.MAJOR = 'new college'
+
+update h
+set h.MAJOR = 'Italian'
+from #Holding as h
+where h.MAJOR = 'italian'
+
+update h
+set h.MAJOR = 'Japanese'
+from #Holding as h
+where h.MAJOR = 'japanese'
+
+update h
+set h.MAJOR = 'Multiple Abilities Program'
+from #Holding as h
+where h.MAJOR = 'multiple abilities program'
+
+update h
+set h.MAJOR = 'Eastern European'
+from #Holding as h
+where h.MAJOR = 'eastern european'
+
+update h
+set h.MAJOR = 'Russian'
+from #Holding as h
+where h.MAJOR = 'russian'
+
+update h
+set h.MAJOR = 'Nursing Education Opporunity RN Program'
+from #Holding as h
+where h.MAJOR = 'nursing education opporunity rn program'
+
+update h
+set h.HOMETOWN =
+	CASE WHEN h.RECIPIENT_NAMECITYSTATEMAJOR like '%;%' or h.RECIPIENT_NAMECITYSTATEMAJOR is null THEN NULL
+	ELSE concat(CASE WHEN sd.CITY IS NULL THEN '' ELSE CONCAT(sd.CITY, ', ') END, CASE WHEN sd.STATE IS NULL THEN '' ELSE sd.STATE END)
+	END
+from #Holding as h
+inner join #stw_data as sd on sd.ID = h.ID and sd.RECIPIENT_CONSTITUENT_ID = h.RECIPIENT_CONSTITUENT_ID
+
+update #Holding
+set HOMETOWN = NULL
+where LTRIM(RTRIM(HOMETOWN)) = ''
+
+update h
+set h.SPORT =
+	CASE WHEN h.RECIPIENT_NAMECITYSTATEMAJOR like '%;%' or h.RECIPIENT_NAMECITYSTATEMAJOR is null THEN NULL
+	ELSE dlr.COMMENTS
+	END
+from #Holding as h
+inner join DESIGNATIONLEVELRECIPIENT as dlr on dlr.DESIGNATIONLEVELID = h.ID and dlr.CONSTITUENTID = h.RECIPIENT_CONSTITUENT_ID and dlr.COMMENTS is not null and dlr.COMMENTS != ''
+
+update #Holding
+set RECIPIENT_NAMECITYSTATEMAJOR = NULL
+where LTRIM(RTRIM(RECIPIENT_NAMECITYSTATEMAJOR)) = ''
+
+create table #FinalHolding
+(
+	PURPOSE_NAME nvarchar(max),
+	ID uniqueidentifier,
+	STEWARDSHIP_NAME nvarchar(max),
+	STEWARDSHIP_CONTACT_ID uniqueidentifier,
+	STEWARDSHIP_LOOKUPID varchar(12),
+	STEWARDSHIP_CONTACT_NAME nvarchar(max),
+	STEWARDSHIP_CONTACT_FORMAL_NAME nvarchar(max),
+	ESTABLISHED_BY nvarchar(max),
+	MOA_DATE varchar(10),
+	ENDOWED_DATE varchar(10),
+	RESTRICTION nvarchar(max),
+	BOOKVALUEEND money,
+	MARKETVALUEEND money,
+	DIVISION nvarchar(max),
+	TYPE_GROUP nvarchar(max),
+--	CONTACTS nvarchar(max),
+  FUNDMANAGER nvarchar(max),
+	EARNINGS_EXPENDITURES money,
+	RECIPIENT_AMOUNT money,
+	RECIPIENT_NAMECITYSTATEMAJOR nvarchar(max),
+	BEGIN_TERM nvarchar(max),
+	BEGIN_YEAR nvarchar(max),
+	END_TERM nvarchar(max),
+	END_YEAR nvarchar(max),
+	CHART nvarchar(max),
+	MARKETVALUEMSG nvarchar(max),
+	FUND nvarchar(max),
+	ASAS_CODE nvarchar(max),
+	SITE nvarchar(max),
+	STUDENT nvarchar(max),
+	MAJOR nvarchar(max),
+	HOMETOWN nvarchar(max),
+	SPORT nvarchar(max),
+	ORG nvarchar(6)
+)
+insert into #FinalHolding
+(
+	PURPOSE_NAME,
+	ID,
+	STEWARDSHIP_NAME,
+	STEWARDSHIP_CONTACT_ID,
+	STEWARDSHIP_LOOKUPID,
+	STEWARDSHIP_CONTACT_NAME,
+	STEWARDSHIP_CONTACT_FORMAL_NAME,
+	ESTABLISHED_BY,
+	MOA_DATE,
+	ENDOWED_DATE,
+	RESTRICTION,
+	BOOKVALUEEND,
+	MARKETVALUEEND,
+	DIVISION,
+	TYPE_GROUP,
+--	CONTACTS,
+  FUNDMANAGER,
+	EARNINGS_EXPENDITURES,
+	RECIPIENT_AMOUNT,
+	RECIPIENT_NAMECITYSTATEMAJOR,
+	BEGIN_TERM,
+	BEGIN_YEAR,
+	END_TERM,
+	END_YEAR,
+	CHART,
+	MARKETVALUEMSG,
+	FUND,
+	ASAS_CODE,
+	SITE,
+	STUDENT,
+	MAJOR,
+	HOMETOWN,
+	SPORT
+)
+select
+	PURPOSE_NAME,
+	ID,
+	STEWARDSHIP_NAME,
+	STEWARDSHIP_CONTACT_ID,
+	STEWARDSHIP_LOOKUPID,
+	STEWARDSHIP_CONTACT_NAME,
+	STEWARDSHIP_CONTACT_FORMAL_NAME,
+	ESTABLISHED_BY,
+	MOA_DATE,
+	ENDOWED_DATE,
+	RESTRICTION,
+	BOOKVALUEEND,
+	MARKETVALUEEND,
+	DIVISION,
+	TYPE_GROUP,
+--	CONTACTS,
+  FUNDMANAGER,
+	EARNINGS_EXPENDITURES,
+	RECIPIENT_AMOUNT,
+	RECIPIENT_NAMECITYSTATEMAJOR,
+	BEGIN_TERM,
+	RIGHT(BEGIN_TERM, 4),
+	END_TERM,
+	RIGHT(END_TERM, 4),
+	CHART,
+	MARKETVALUEMSG,
+	FUND,
+	CASE
+		WHEN LTRIM(RTRIM(ASAS_CODE)) = ','
+		THEN NULL
+		WHEN SUBSTRING(LTRIM(ASAS_CODE), 1, 1) = ','
+		THEN LTRIM(SUBSTRING(ASAS_CODE, CHARINDEX(',', ASAS_CODE) + 1, LEN(ASAS_CODE)))
+		ELSE ASAS_CODE
+		END,
+	SITE,
+	STUDENT,
+	LTRIM(RTRIM(MAJOR)),
+	LTRIM(RTRIM(HOMETOWN)),
+	SPORT
+from
+	#Holding
+	
+update fh
+set fh.ORG = SUBSTRING(alt.ALTLOOKUPID, 7, 6)
+from
+	#FinalHolding as fh
+	inner join DESIGNATION as d on d.DESIGNATIONLEVEL1ID = fh.ID
+	inner join DESIGNATIONALTLOOKUPID as alt on alt.DESIGNATIONID = d.ID
+		and alt.ALTLOOKUPIDTYPECODEID = 'CF1AC560-A17A-4CDF-8DDA-628E08B70E7D'
+		and SUBSTRING(alt.ALTLOOKUPID, 1, 1) like '[a-Z]'
+		and LEN(alt.ALTLOOKUPID) >= 12
+		and SUBSTRING(alt.ALTLOOKUPID, 7, 1) like '[0-9]'
+		and SUBSTRING(alt.ALTLOOKUPID, 8, 1) like '[0-9]'
+		and SUBSTRING(alt.ALTLOOKUPID, 9, 1) like '[0-9]'
+		and SUBSTRING(alt.ALTLOOKUPID, 10, 1) like '[0-9]'
+		and SUBSTRING(alt.ALTLOOKUPID, 11, 1) like '[0-9]'
+		and SUBSTRING(alt.ALTLOOKUPID, 12, 1) like '[0-9]'
+
+select DISTINCT * from #FinalHolding
+
+DROP TABLE #stw_data 
+DROP TABLE #stw_data_sum
+DROP TABLE #stw_data_holdkey
+DROP TABLE #stw_data_holddups
+DROP TABLE #Holding
+DROP TABLE #FinalHolding
+
+/** issues:
+		1.  Multiple fund restrictions in some cases
+		2.  problems with the aggregation in the first query.  cardinality issues related to the joins.  see ID =  '775D6A75-9FCF-4B4D-A161-1696279E20B7'
+		*/
+
+end
+		]]>
+	</CreateProcedureSQL>
+
+</SQLStoredProcedureSpec>
