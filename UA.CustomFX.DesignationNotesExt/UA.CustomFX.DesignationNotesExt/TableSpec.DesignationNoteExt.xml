@@ -1,8 +1,8 @@
-﻿<TableSpec 
+<TableSpec 
 	xmlns="bb_appfx_table"
 	xmlns:c="bb_appfx_commontypes" 
 	ID="7b3cdc7f-5352-44b5-96e4-9f601166a1e4"
-	Name="USR UA DESIGNATION LEVEL EXT"
+	Name="USR UA DESIGNATION LEVEL EXT Table Spec"
 	Description="Stores information about designation level records"
 	Author="ADV\msstu6"
 	Tablename="USR_UA_DESIGNATIONLEVEL_EXT"		   
@@ -17,9 +17,9 @@
     <TextField Description="Preferred school of the designation." Name="PREFERREDSCHOOL" Length="255" Required="false" />
     <TextField Description="Established by" Name="ESTABLISHEDBY" Length="500" Required="false" />
     <TextField Description="Constituent type of the designation." Name="CONSTITUENTTYPE" Length="255" Required="false" />
-    <MemoField Description="Fund restriction." Name="FUNDRESTRICTION" />
+    <TextField Description="Fund restriction." Name="FUNDRESTRICTION" Length="4000" />
     <DateField Description="MOA Date" Name="MOADATE" />
-    <MemoField Description="Resolution Date" Name="RESOLUTIONDATE" />
+    <DateField Description="Resolution Date" Name="RESOLUTIONDATE" />
     <TextField Description="Fund Manager" Name="FUNDMANAGERID" Length="255" Required ="false"/>
     <CodeTableField
       Name="DESIGNATIONSTATUSCODEID"
