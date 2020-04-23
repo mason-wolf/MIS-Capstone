@@ -12,15 +12,13 @@
 
 	<Fields>
     <ForeignKeyField Description="Note that is tied to the designation." Name="DESIGNATIONLEVELID" Required="true" ForeignTable="DESIGNATIONLEVEL" OnDelete="CascadeDelete" />
-    <TextField Description="Status of the designation." Name="DESIGNATIONSTATUS" Length="25" Required="false" />
     <TextField Description="Stewardship of the designation." Name="STEWARDSHIPNAME" Length="255" Required="false" />
-    <TextField Description="Preferred school of the designation." Name="PREFERREDSCHOOL" Length="255" Required="false" />
     <TextField Description="Established by" Name="ESTABLISHEDBY" Length="500" Required="false" />
-    <TextField Description="Constituent type of the designation." Name="CONSTITUENTTYPE" Length="255" Required="false" />
     <TextField Description="Fund restriction." Name="FUNDRESTRICTION" Length="4000" />
     <DateField Description="MOA Date" Name="MOADATE" />
     <DateField Description="Resolution Date" Name="RESOLUTIONDATE" />
     <TextField Description="Fund Manager" Name="FUNDMANAGERID" Length="255" Required ="false"/>
+    
     <CodeTableField
       Name="DESIGNATIONSTATUSCODEID"
       CodeTable="USR_UA_DESIGNATIONSTATUSCODE"
