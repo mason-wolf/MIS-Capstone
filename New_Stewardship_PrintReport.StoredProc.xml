@@ -1,4 +1,4 @@
-﻿<SQLStoredProcedureSpec
+<SQLStoredProcedureSpec
 	xmlns="bb_appfx_sqlstoredprocedure"
 	xmlns:c="bb_appfx_commontypes" 
 	ID="7fef26ab-20b7-4661-9e70-c6a7416a68bf"
@@ -227,9 +227,9 @@ select distinct
 	replace(replace(LTRIM(dle.FUNDRESTRICTION), CHAR(13), ''), CHAR(10), '') as RESTRICTION,
 	replace(replace(bv.BOOKVALUEEND, CHAR(13), ''), CHAR(10), '') as BOOKVALUEEND,
 	mv.MARKETVALUEEND,
-	replace(replace(LTRIM(dle.PREFERREDSCHOOL), CHAR(13), ''), CHAR(10), '') as DIVISION,
+	(SELECT DESCRIPTION FROM USR_UA_DESIGNATIONPREFERREDSCHOOLCODE WHERE ID=dle.PREFERREDSCHOOLCODEID) as DIVISION,
   (SELECT NAME FROM CONSTITUENT WHERE ID=dle.FUNDMANAGERID) AS FUNDMANAGER,
-	case when dle.CONSTITUENTTYPE like '%Scholarship%' then 'Scholarship' else 'Not Scholarship' end as TYPE_GROUP,
+	case when (SELECT DESCRIPTION FROM USR_UA_DESIGNATIONCONSTITUENTTYPECODE WHERE ID=dle.CONSTITUENTTYPECODEID) like '%Scholarship%' then 'Scholarship' else 'Not Scholarship' end as TYPE_GROUP,
 	rec.CONSTITUENTID as RECIPIENT_CONSTITUENT_ID,
 	[dbo].[USR_UFN_UA_INITCAP](education.CITY) as EDUCATIONCITY,
 	education.STATEABBR,
@@ -264,7 +264,7 @@ from
 	left join USR_UA_DESIGNATIONLEVELFINANCIALINFO_EXT as earningsext on earningsext.ID = earnings.ID
 	left join SITE as site on site.ID = dl.SITEID
 where
-	dle.DESIGNATIONSTATUS like '%Stewarded%'
+	(SELECT DESCRIPTION FROM USR_UA_DESIGNATIONSTATUSCODE WHERE ID=dle.DESIGNATIONSTATUSCODEID) like '%Stewarded%'
 	and (@SITENAME = 'All sites' or site.NAME in (select Data from USR_UFN_UA_SPLIT (@SITENAME, ',')))
 
 --update #stw_data tmp table to get the receipeint name in proper format - Req by steven on 8/23/2017 Ticket#292047 
